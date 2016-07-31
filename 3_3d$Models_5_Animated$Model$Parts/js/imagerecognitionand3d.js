@@ -46,6 +46,28 @@ var World = {
 			}
 		});
 
+		this.skybuilding = new AR.Model("assets/skyship.wt3", {
+			onLoaded: this.loadingStep,
+			/*
+				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
+		
+				Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
+			*/
+			scale: {
+				x: 0.003,
+				y: 0.003,
+				z: 0.003
+			},
+			translate: {
+				x: 0.0,
+				y: 0.05,
+				z: 0.0
+			},
+			rotate: {
+				roll: 0
+			}
+		});
+
 		/*
 			3D content within Wikitude can only be loaded from Wikitude 3D Format files (.wt3). This is a compressed binary format for describing 3D content which is optimized for fast loading and handling of 3D content on a mobile device. You still can use 3D models from your favorite 3D modeling tools (Autodesk® Maya® or Blender) but you'll need to convert them into the wt3 file format. The Wikitude 3D Encoder desktop application (Windows and Mac) encodes your 3D source file. You can download it from our website. The Encoder can handle Autodesk® FBX® files (.fbx) and the open standard Collada (.dae) file formats for encoding to .wt3.
 
@@ -81,6 +103,7 @@ var World = {
 		this.animationHood = new AR.ModelAnimation(this.model, "Trunkopen_animation");
 		this.animationSky100 = new AR.ModelAnimation(this.model, "Animation_00");
 		this.animationSkyShip = new AR.ModelAnimation(this.modelShip, "Animation_00");
+		this.animationSkyBuilding = new AR.ModelAnimation(this.modelShip, "Animation_00");
 
 		this.model.onClick = function(drawable, model_part) {
 			switch (model_part) {
@@ -125,7 +148,7 @@ var World = {
 		*/
 		var trackable = new AR.Trackable2DObject(this.tracker, "*", {
 			drawables: {
-				cam: [this.modelShip]
+				cam: [this.model]
 			},
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
@@ -181,8 +204,8 @@ var World = {
 			// Resets the properties to the initial values.
 			World.resetModel();
 			World.appearingAnimation.start();
-							World.animationSkyShip.start(200);
-                    		World.animationSky100.start(200);
+			World.animationSkyShip.start(200);
+			World.animationSky100.start(200);
 		}
 	},
 	disappear: function disappearFn() {
