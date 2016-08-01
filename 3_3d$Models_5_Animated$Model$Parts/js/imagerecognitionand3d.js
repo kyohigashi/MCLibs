@@ -57,30 +57,7 @@ var World = {
 			}
 		});
 
-		this.skybuildingWithWord = new AR.Model("assets/building_with_word_v3.wt3", {
-			onLoaded: this.loadingStep,
-			/*
-				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
-		
-				Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
-			*/
-			scale: {
-				x: 0.003,
-				y: 0.003,
-				z: 0.003
-			},
-			translate: {
-				x: 0.0,
-				y: 0.05,
-				z: 0.0
-			},
-			rotate: {
-				roll: 0
-			}
-		});
-
 		this.animationSkyShip = new AR.ModelAnimation(this.modelShip, "Animation_00");
-		this.skybuildingWithWord = new AR.ModelAnimation(this.skybuildingWithWord, "Take 001");
 
 		/*
 			As a next step, an appearing animation is created. For more information have a closer look at the function implementation.
@@ -151,7 +128,6 @@ var World = {
 			World.resetModel();
 			World.appearingAnimation.start();
 			World.animationSkyShip.start(200);
-			World.skybuildingWithWord.start(200);
 		}
 	},
 	disappear: function disappearFn() {
