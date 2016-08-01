@@ -62,7 +62,7 @@ var World = {
 		/*
 			As a next step, an appearing animation is created. For more information have a closer look at the function implementation.
 		*/
-		this.appearingAnimation = this.createAppearingAnimation(this.model, 0.045);
+		// this.appearingAnimation = this.createAppearingAnimation(this.modelShip, 0.045);
 
 		/*
 			To receive a notification once the image target is inside the field of vision the onEnterFieldOfVision trigger of the AR.Trackable2DObject is used. In the example the function appear() is attached. Within the appear function the previously created AR.AnimationGroup is started by calling its start() function which plays the animation once.
@@ -126,7 +126,7 @@ var World = {
 		if (World.loaded) {
 			// Resets the properties to the initial values.
 			World.resetModel();
-			World.appearingAnimation.start();
+			// World.appearingAnimation.start();
 			World.animationSkyShip.start(200);
 		}
 	},
