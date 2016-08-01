@@ -71,7 +71,7 @@ var World = {
 		*/
 		var trackable = new AR.Trackable2DObject(this.tracker, "*", {
 			drawables: {
-				cam: [this.animationSkyShip]
+				cam: [this.targetModel]
 			},
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
