@@ -20,9 +20,20 @@ var World = {
 			Important: If you replace the tracker file with your own, make sure to change the target name accordingly.
 			Use a specific target name to respond only to a certain target or use a wildcard to respond to any or a certain group of targets.
 		*/
+
 		this.tracker = new AR.Tracker("assets/tracker.wtc", {
 			onLoaded: this.loadingStep
 		});
+
+
+		/*
+			3D content within Wikitude can only be loaded from Wikitude 3D Format files (.wt3). This is a compressed binary format for describing 3D content which is optimized for fast loading and handling of 3D content on a mobile device. You still can use 3D models from your favorite 3D modeling tools (Autodesk® Maya® or Blender) but you'll need to convert them into the wt3 file format. The Wikitude 3D Encoder desktop application (Windows and Mac) encodes your 3D source file. You can download it from our website. The Encoder can handle Autodesk® FBX® files (.fbx) and the open standard Collada (.dae) file formats for encoding to .wt3.
+
+			Create an AR.Model and pass the URL to the actual .wt3 file of the model. Additional options allow for scaling, rotating and positioning the model in the scene.
+
+			A function is attached to the onLoaded trigger to receive a notification once the 3D model is fully loaded. Depending on the size of the model and where it is stored (locally or remotely) it might take some time to completely load and it is recommended to inform the user about the loading time.
+		*/
+
 
 		this.modelShip = new AR.Model("assets/skyship.wt3", {
 			onLoaded: this.loadingStep,
@@ -68,73 +79,8 @@ var World = {
 			}
 		});
 
-		/*
-			3D content within Wikitude can only be loaded from Wikitude 3D Format files (.wt3). This is a compressed binary format for describing 3D content which is optimized for fast loading and handling of 3D content on a mobile device. You still can use 3D models from your favorite 3D modeling tools (Autodesk® Maya® or Blender) but you'll need to convert them into the wt3 file format. The Wikitude 3D Encoder desktop application (Windows and Mac) encodes your 3D source file. You can download it from our website. The Encoder can handle Autodesk® FBX® files (.fbx) and the open standard Collada (.dae) file formats for encoding to .wt3.
-
-			Create an AR.Model and pass the URL to the actual .wt3 file of the model. Additional options allow for scaling, rotating and positioning the model in the scene.
-
-			A function is attached to the onLoaded trigger to receive a notification once the 3D model is fully loaded. Depending on the size of the model and where it is stored (locally or remotely) it might take some time to completely load and it is recommended to inform the user about the loading time.
-		*/
-		this.model = new AR.Model("assets/sky100_animated.wt3", {
-			onLoaded: this.loadingStep,
-			/*
-				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
-
-				Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
-			*/
-			scale: {
-				x: 0.5,
-				y: 0.5,
-				z: 0.5
-			},
-			translate: {
-				x: 0.0,
-				y: 0.05,
-				z: 0.0
-			},
-			rotate: {
-				roll: 25
-			}
-		});
-
-		this.animationDoorL = new AR.ModelAnimation(this.model, "DoorOpenL_animation");
-		this.animationDoorR = new AR.ModelAnimation(this.model, "DoorOpenR_animation");
-		this.animationEngine = new AR.ModelAnimation(this.model, "EngineWindow_animation");
-		this.animationHood = new AR.ModelAnimation(this.model, "Trunkopen_animation");
-		this.animationSky100 = new AR.ModelAnimation(this.model, "Animation_00");
 		this.animationSkyShip = new AR.ModelAnimation(this.modelShip, "Animation_00");
 		this.skybuildingWithWord = new AR.ModelAnimation(this.skybuildingWithWord, "Take 001");
-
-		this.model.onClick = function(drawable, model_part) {
-			switch (model_part) {
-				case 'WindFL':
-				case 'DoorL[0]':
-				case 'DoorL[1]':
-				case 'DoorL[2]':
-				case 'DoorL[3]':
-				case 'Sphere001':
-					break;
-
-				case 'WindFR':
-				case 'DoorR[0]':
-				case 'DoorR[1]':
-				case 'DoorR[2]':
-				case 'DoorR[3]':
-				case 'Sphere001':
-					break;
-
-				case 'Rear[0]':
-				case 'Rear[1]':
-				case 'WindR1[0]':
-				case 'WindR1[1]':
-				case 'Sphere001':
-					break;
-
-				case 'Hood':
-					break;
-			}
-		}
-
 
 		/*
 			As a next step, an appearing animation is created. For more information have a closer look at the function implementation.
@@ -205,7 +151,6 @@ var World = {
 			World.resetModel();
 			World.appearingAnimation.start();
 			World.animationSkyShip.start(200);
-			World.animationSky100.start(200);
 			World.skybuildingWithWord.start(200);
 		}
 	},
