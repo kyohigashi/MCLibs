@@ -103,7 +103,7 @@ var World = {
 		this.animationHood = new AR.ModelAnimation(this.model, "Trunkopen_animation");
 		this.animationSky100 = new AR.ModelAnimation(this.model, "Animation_00");
 		this.animationSkyShip = new AR.ModelAnimation(this.modelShip, "Animation_00");
-		this.skybuildingWithWord = new AR.ModelAnimation(this.modelShip, "Animation_00");
+		this.skybuildingWithWord = new AR.ModelAnimation(this.skybuildingWithWord, "Take 001");
 
 		this.model.onClick = function(drawable, model_part) {
 			switch (model_part) {
