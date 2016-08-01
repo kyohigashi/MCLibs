@@ -148,7 +148,7 @@ var World = {
 		*/
 		var trackable = new AR.Trackable2DObject(this.tracker, "*", {
 			drawables: {
-				cam: [this.modelShip]
+				cam: [this.skybuildingWithWord]
 			},
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
