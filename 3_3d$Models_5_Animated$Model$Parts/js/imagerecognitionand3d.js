@@ -32,30 +32,10 @@ var World = {
 			Create an AR.Model and pass the URL to the actual .wt3 file of the model. Additional options allow for scaling, rotating and positioning the model in the scene.
 
 			A function is attached to the onLoaded trigger to receive a notification once the 3D model is fully loaded. Depending on the size of the model and where it is stored (locally or remotely) it might take some time to completely load and it is recommended to inform the user about the loading time.
+
+
+
 		*/
-
-
-		this.targetModelNight = new AR.Model("assets/night_set.wt3", {
-			onLoaded: this.loadingStep,
-			/*
-				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
-		
-				Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
-			*/
-			scale: {
-				x: 0.003,
-				y: 0.003,
-				z: 0.003
-			},
-			translate: {
-				x: 0.0,
-				y: 0.05,
-				z: 0.0
-			},
-			rotate: {
-				roll: 0
-			}
-		});
 
 		this.targetModelDay = new AR.Model("assets/Day_set_0829_modify.wt3", {
 			onLoaded: this.loadingStep,
@@ -80,17 +60,17 @@ var World = {
 		});
 
 
-		this.animationSkyShip = new AR.ModelAnimation(this.targetModelNight, "Night_set_animation");
-		this.animation2 = new AR.ModelAnimation(this.targetModelNight, "happy_birthday5_animation");
+		// this.animationSkyShip = new AR.ModelAnimation(this.targetModelNight, "Night_set_animation");
+		// this.animation2 = new AR.ModelAnimation(this.targetModelNight, "happy_birthday5_animation");
 
 		this.animationDay1 = new AR.ModelAnimation(this.targetModelDay, "I_love_HK4_animation");
 		this.animationDay2 = new AR.ModelAnimation(this.targetModelDay, "I_love_SKY100_animation");
-		this.animationDay3 = new AR.ModelAnimation(this.targetModelDay, "I_love_u_animation");
-		this.animationDay4 = new AR.ModelAnimation(this.targetModelDay, "cloud_animation");
-		this.animationDay5 = new AR.ModelAnimation(this.targetModelDay, "happy_birthday5_animation");
-		this.animationDay6 = new AR.ModelAnimation(this.targetModelDay, "sky100_animation");
-		this.animationDay7 = new AR.ModelAnimation(this.targetModelDay, "toppoghk_animation");
-		this.animationDay8 = new AR.ModelAnimation(this.targetModelDay, "whereami_amimation");
+		// this.animationDay3 = new AR.ModelAnimation(this.targetModelDay, "I_love_u_animation");
+		// this.animationDay4 = new AR.ModelAnimation(this.targetModelDay, "cloud_animation");
+		// this.animationDay5 = new AR.ModelAnimation(this.targetModelDay, "happy_birthday5_animation");
+		// this.animationDay6 = new AR.ModelAnimation(this.targetModelDay, "sky100_animation");
+		// this.animationDay7 = new AR.ModelAnimation(this.targetModelDay, "toppoghk_animation");
+		// this.animationDay8 = new AR.ModelAnimation(this.targetModelDay, "whereami_amimation");
 
 
 		// this.animationSkyShip = new AR.ModelAnimation(this.targetModel, "Animation_00");
@@ -168,12 +148,12 @@ var World = {
 
 			World.animationDay1.start(200);
 			World.animationDay2.start(200);
-			World.animationDay3.start(200);
-			World.animationDay4.start(200);
-			World.animationDay5.start(200);
-			World.animationDay6.start(200);
-			World.animationDay7.start(200);
-			World.animationDay8.start(200);
+			// World.animationDay3.start(200);
+			// World.animationDay4.start(200);
+			// World.animationDay5.start(200);
+			// World.animationDay6.start(200);
+			// World.animationDay7.start(200);
+			// World.animationDay8.start(200);
 
 
 		}
