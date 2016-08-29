@@ -14,7 +14,6 @@ var World = {
 			onLoaded: this.loadingStep,
 			/*
 				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
-		
 				Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
 			*/
 			scale: {
@@ -66,20 +65,21 @@ var World = {
 	},
 
 	loadingStep: function() {
-		var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
-		var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
-		document.getElementById('loadingMessage').innerHTML =
-			"<div" + cssDivLeft + ">Scan CarAd Tracker Image:</div>" +
-			"<div" + cssDivRight + "><img src='assets/car.png'></img></div>";
-		// Remove Scan target message after 10 sec.
-		setTimeout(function() {
-			var e = document.getElementById('loadingMessage');
-			e.parentElement.removeChild(e);
-		}, 10000);
+		if (World.targetModelDay.isLoaded() && World.tracker.isLoaded()) {
+			World.loaded = true;
+			var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
+			var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
+			document.getElementById('loadingMessage').innerHTML =
+				"<div" + cssDivLeft + ">Scan CarAd Tracker Image:</div>" +
+				"<div" + cssDivRight + "><img src='assets/car.png'></img></div>";
+			// Remove Scan target message after 10 sec.
+			setTimeout(function() {
+				var e = document.getElementById('loadingMessage');
+				e.parentElement.removeChild(e);
+			}, 10000);
 
-		World.appearingAnimation.start();
-		World.loaded = true;
-
+			World.appearingAnimation.start();
+		}
 	},
 
 	createAppearingAnimation: function(model, scale) {
@@ -107,17 +107,18 @@ var World = {
 	},
 
 	startModelAnimation: function() {
-			// Resets the properties to the initial values.
+		// Resets the properties to the initial values.
+		if (World.loaded) {
 			World.resetModel();
 			// World.animationDay1.start(200);
-			// World.animationDay2.start(200);
-			World.animationDay3.start(200);
-			World.animationDay4.start(200);
-			World.animationDay5.start(200);
-			World.animationDay6.start(200);
-			World.animationDay7.start(200);
-			World.animationDay8.start(200);
-
+			World.animationDay2.start(200);
+			// World.animationDay3.start(-1);
+			// World.animationDay4.start(-1);
+			// World.animationDay5.start(-1);
+			// World.animationDay6.start(-1);
+			// World.animationDay7.start(-1);
+			// World.animationDay8.start(-1);
+		}
 	},
 
 	disappear: function() {
