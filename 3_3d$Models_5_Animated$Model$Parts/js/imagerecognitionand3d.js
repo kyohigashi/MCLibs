@@ -96,7 +96,7 @@ var World = {
 	},
 
 	loadingStep: function loadingStepFn() {
-		if (!World.loaded && World.tracker.isLoaded() && World.targetModel.isLoaded()) {
+		if (!World.loaded && World.tracker.isLoaded() && World.targetModelDay.isLoaded()) {
 			World.loaded = true;
 
 			// if (World.trackableVisible && !World.appearingAnimation.isRunning()) {
