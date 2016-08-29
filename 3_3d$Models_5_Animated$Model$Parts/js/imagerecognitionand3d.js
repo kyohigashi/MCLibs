@@ -2,14 +2,14 @@ var World = {
 	loaded: false,
 	trackableVisible: false,
 
-	init: function () {
+	init: function() {
 		this.createOverlays();
 	},
 	loadModeAndTracker: function() {
 		this.loadModel();
 		this.loadTracker();
 	},
-	loadModel: function () {
+	loadModel: function() {
 		this.targetModelDay = new AR.Model("assets/Day_set_0829_modify.wt3", {
 			onLoaded: this.loadingStep,
 			/*
@@ -55,7 +55,7 @@ var World = {
 		});
 	},
 
-	createOverlays: function () {
+	createOverlays: function() {
 		this.imageResource = new AR.ImageResource("assets/car.png");
 		this.markerDrawable_idle = new AR.ImageDrawable(this.imageResource, 2.5, {
 			zOrder: 0,
@@ -65,10 +65,23 @@ var World = {
 
 	},
 
-	loadingStep: function () {
+	loadingStep: function() {
+		var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
+		var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
+		document.getElementById('loadingMessage').innerHTML =
+			"<div" + cssDivLeft + ">Scan CarAd Tracker Image:</div>" +
+			"<div" + cssDivRight + "><img src='assets/car.png'></img></div>";
+		// Remove Scan target message after 10 sec.
+		setTimeout(function() {
+			var e = document.getElementById('loadingMessage');
+			e.parentElement.removeChild(e);
+		}, 10000);
+
+		World.appearingAnimation.start();
+
 	},
 
-	createAppearingAnimation: function (model, scale) {
+	createAppearingAnimation: function(model, scale) {
 		/*
 			The animation scales up the 3D model once the target is inside the field of vision. Creating an animation on a single property of an object is done using an AR.PropertyAnimation. Since the car model needs to be scaled up on all three axis, three animations are needed. These animations are grouped together utilizing an AR.AnimationGroup that allows them to play them in parallel.
 
@@ -87,12 +100,12 @@ var World = {
 		return new AR.AnimationGroup(AR.CONST.ANIMATION_GROUP_TYPE.PARALLEL, [sx, sy, sz]);
 	},
 
-	appear: function () {
+	appear: function() {
 		World.trackableVisible = true;
 		this.startModelAnimation();
 	},
 
-	startModelAnimation: function () {
+	startModelAnimation: function() {
 		if (World.loaded) {
 			// Resets the properties to the initial values.
 			World.resetModel();
@@ -107,11 +120,11 @@ var World = {
 		}
 	},
 
-	disappear: function () {
+	disappear: function() {
 		World.trackableVisible = false;
 	},
 
-	resetModel: function () {
+	resetModel: function() {
 		World.targetModelDay.rotate.roll = -25;
 	},
 
