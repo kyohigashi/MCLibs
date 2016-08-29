@@ -35,7 +35,7 @@ var World = {
 		*/
 
 
-		this.targetModel = new AR.Model("assets/building_with_word_v3.wt3", {
+		this.targetModel = new AR.Model("assets/night_set.wt3", {
 			onLoaded: this.loadingStep,
 			/*
 				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
@@ -57,7 +57,8 @@ var World = {
 			}
 		});
 
-		this.animationSkyShip = new AR.ModelAnimation(this.targetModel, "Take 001");
+		this.animationSkyShip = new AR.ModelAnimation(this.targetModel, "Night_set_animation");
+		this.animation2 = new AR.ModelAnimation(this.targetModel, "happy_birthday5_animation");
 		// this.animationSkyShip = new AR.ModelAnimation(this.targetModel, "Animation_00");
 
 		/*
@@ -129,6 +130,7 @@ var World = {
 			World.resetModel();
 			// World.appearingAnimation.start();
 			World.animationSkyShip.start(200);
+			World.animation2.start(200);
 		}
 	},
 	disappear: function disappearFn() {
