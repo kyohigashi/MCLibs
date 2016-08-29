@@ -107,7 +107,6 @@ var World = {
 	},
 
 	startModelAnimation: function() {
-		if (World.loaded) {
 			// Resets the properties to the initial values.
 			World.resetModel();
 			// World.animationDay1.start(200);
@@ -118,7 +117,7 @@ var World = {
 			World.animationDay6.start(200);
 			World.animationDay7.start(200);
 			World.animationDay8.start(200);
-		}
+
 	},
 
 	disappear: function() {
