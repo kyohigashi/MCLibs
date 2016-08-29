@@ -63,14 +63,14 @@ var World = {
 		// this.animationSkyShip = new AR.ModelAnimation(this.targetModelNight, "Night_set_animation");
 		// this.animation2 = new AR.ModelAnimation(this.targetModelNight, "happy_birthday5_animation");
 
-		// this.animationDay1 = new AR.ModelAnimation(this.targetModelDay, "I_love_HK4_animation");
-		// this.animationDay2 = new AR.ModelAnimation(this.targetModelDay, "I_love_SKY100_animation");
-		// this.animationDay3 = new AR.ModelAnimation(this.targetModelDay, "I_love_u_animation");
-		// this.animationDay4 = new AR.ModelAnimation(this.targetModelDay, "cloud_animation");
+		this.animationDay1 = new AR.ModelAnimation(this.targetModelDay, "I_love_HK4_animation");
+		this.animationDay2 = new AR.ModelAnimation(this.targetModelDay, "I_love_SKY100_animation");
+		this.animationDay3 = new AR.ModelAnimation(this.targetModelDay, "I_love_u_animation");
+		this.animationDay4 = new AR.ModelAnimation(this.targetModelDay, "cloud_animation");
 		 this.animationDay5 = new AR.ModelAnimation(this.targetModelDay, "happy_birthday5_animation");
-		// this.animationDay6 = new AR.ModelAnimation(this.targetModelDay, "sky100_animation");
-		// this.animationDay7 = new AR.ModelAnimation(this.targetModelDay, "toppoghk_animation");
-		// this.animationDay8 = new AR.ModelAnimation(this.targetModelDay, "whereami_amimation");
+		this.animationDay6 = new AR.ModelAnimation(this.targetModelDay, "sky100_animation");
+		this.animationDay7 = new AR.ModelAnimation(this.targetModelDay, "toppoghk_animation");
+		this.animationDay8 = new AR.ModelAnimation(this.targetModelDay, "whereami_amimation");
 
 
 		// this.animationSkyShip = new AR.ModelAnimation(this.targetModel, "Animation_00");
@@ -142,18 +142,15 @@ var World = {
 		if (World.loaded) {
 			// Resets the properties to the initial values.
 			World.resetModel();
-			// World.appearingAnimation.start();
-			// World.animationSkyShip.start(200);
-			// World.animation2.start(200);
 
-			// World.animationDay1.start(200);
-			// World.animationDay2.start(200);
-			// World.animationDay3.start(200);
-			// World.animationDay4.start(200);
+			World.animationDay1.start(200);
+			World.animationDay2.start(200);
+			World.animationDay3.start(200);
+			World.animationDay4.start(200);
 			World.animationDay5.start(200);
-			// World.animationDay6.start(200);
-			// World.animationDay7.start(200);
-			// World.animationDay8.start(200);
+			World.animationDay6.start(200);
+			World.animationDay7.start(200);
+			World.animationDay8.start(200);
 
 
 		}
