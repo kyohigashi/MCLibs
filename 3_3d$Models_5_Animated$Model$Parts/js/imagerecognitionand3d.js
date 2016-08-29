@@ -39,6 +39,7 @@ var World = {
 		this.animationDay6 = new AR.ModelAnimation(this.targetModelDay, "sky100_animation");
 		this.animationDay7 = new AR.ModelAnimation(this.targetModelDay, "toppoghk_animation");
 		this.animationDay8 = new AR.ModelAnimation(this.targetModelDay, "whereami_amimation");
+		this.appearingAnimation = this.createAppearingAnimation(this.targetModelDay, 0.045);
 	},
 	loadTracker: function() {
 		this.tracker = new AR.Tracker("assets/tracker.wtc", {
@@ -78,7 +79,9 @@ var World = {
 				e.parentElement.removeChild(e);
 			}, 10000);
 
-			World.appearingAnimation.start();
+			if (World.trackableVisible && !World.appearingAnimation.isRunning()) {
+				World.appearingAnimation.start();
+			}
 		}
 	},
 
