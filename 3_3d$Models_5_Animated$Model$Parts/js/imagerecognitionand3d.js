@@ -78,6 +78,7 @@ var World = {
 		}, 10000);
 
 		World.appearingAnimation.start();
+		World.loaded = true;
 
 	},
 
