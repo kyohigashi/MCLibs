@@ -63,7 +63,7 @@ var World = {
 			}
 		});
 
-		this.animationDay1 = new AR.ModelAnimation(targetModelDay, "happy_birthday5_animation"); 
+		this.animationDay1 = new AR.ModelAnimation(targetModelDay, "sky100_animation");
 		if (this.targetModels.length > 0) {
 			this.targetModels.pop();
 		}
@@ -117,7 +117,7 @@ var World = {
 		alert("loadingStep");
 		if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.tracker.isLoaded()) {
 			World.loaded = true;
-					alert("World.loaded");
+			alert("World.loaded");
 
 			var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
 			var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
@@ -128,12 +128,13 @@ var World = {
 			setTimeout(function() {
 				var e = document.getElementById('loadingMessage');
 				e.parentElement.removeChild(e);
-				var b1 = document.getElementById('modelbutton');
-				var b2 = document.getElementById('modelbutton2');
-				b1.parentElement.removeChild(b1);
-				b2.parentElement.removeChild(b2);
+
 			}, 10000);
 
+			var b1 = document.getElementById('modelbutton');
+			var b2 = document.getElementById('modelbutton2');
+			b1.parentElement.removeChild(b1);
+			b2.parentElement.removeChild(b2);
 			if (World.trackableVisible) {
 				var appearingAnimation = this.createAppearingAnimation(World.targetModels[0], 0.045);
 				appearingAnimation.appearingAnimation.start();
@@ -171,11 +172,11 @@ var World = {
 		World.trackableVisible = false;
 	},
 	resetModel: function() {
-		if (typeof World.targetModelNight != "undefined") {
-			World.targetModelNight.rotate.roll = -25;
+		if (typeof World.targetModels[0] != "undefined") {
+			World.targetModels[0].rotate.roll = -25;
 		}
-		if (typeof World.targetModelDay != "undefined") {
-			World.targetModelDay.rotate.roll = -25;
+		if (typeof World.targetModels[0] != "undefined") {
+			World.targetModels[0].rotate.roll = -25;
 		}
 	}
 
