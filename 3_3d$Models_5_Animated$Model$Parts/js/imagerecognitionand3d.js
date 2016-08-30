@@ -22,14 +22,22 @@ var World = {
 		});
 	},
 	loadNightModeAndTracker: function() {
-		this.loadNightModel();
+		
 		this.tracker = new AR.Tracker("assets/tracker.wtc", {
 			onLoaded: this.loadingStep
 		});
 
-		var trackable = new AR.Trackable2DObject(this.tracker, "*", {
+		var trackable = new AR.Trackable2DObject(this.tracker, "Small-ICC-firework-version-chop", {
 			drawables: {
-				cam: World.targetModels
+				cam: [this.loadNightModel("assets/night_set.wt3", [])]
+			},
+			onEnterFieldOfVision: this.appear,
+			onExitFieldOfVision: this.disappear
+		});
+
+		var trackable2 = new AR.Trackable2DObject(this.tracker, "Small-ICC-chop", {
+			drawables: {
+				cam: [this.loadNightModel("assets/night_set.wt3", [])]
 			},
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
@@ -62,8 +70,8 @@ var World = {
 		}
 		this.targetModels.push(targetModelDay);
 	},
-	loadNightModel: function() {
-		var targetModelNight = new AR.Model("assets/night_set.wt3", {
+	loadNightModel: function(file,animationNames) {
+		var targetModelNight = new AR.Model(file, {
 			onLoaded: this.loadingStep,
 			/*
 				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
@@ -87,10 +95,11 @@ var World = {
 		this.animations.push(new AR.ModelAnimation(targetModelNight, "Night_set_animation"));
 		this.animations.push(new AR.ModelAnimation(targetModelNight, "happy_birthday5_animation"));
 
-		if (this.targetModels.length > 0) {
-			this.targetModels.pop();
-		}
+		// if (this.targetModels.length > 0) {
+		// 	this.targetModels.pop();
+		// }
 		this.targetModels.push(targetModelNight);
+		return targetModelNight;
 	},
 	createOverlays: function() {
 		this.imageResource = new AR.ImageResource("assets/car.png");
