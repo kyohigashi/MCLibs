@@ -2,6 +2,7 @@ var World = {
 	loaded: false,
 	trackableVisible: false,
 	targetModels: [],
+	animations: [],
 
 	init: function() {
 		this.createOverlays();
@@ -34,13 +35,6 @@ var World = {
 			onExitFieldOfVision: this.disappear
 		});
 	},
-	startNightModelAnimation: function() {
-		if (World.loaded && typeof World.targetModels != "undefined") {
-			World.resetModel();
-			World.animationNight1.start(200);
-			World.animationNight2.start(200);
-		}
-	},
 	loadDayModel: function() {
 		var targetModelDay = new AR.Model("assets/Day_set_0829_modify.wt3", {
 			onLoaded: this.loadingStep,
@@ -62,8 +56,7 @@ var World = {
 				roll: 0
 			}
 		});
-
-		this.animationDay1 = new AR.ModelAnimation(targetModelDay, "I_love_HK4_animation");
+		animations.push(new AR.ModelAnimation(targetModelDay, "I_love_HK4_animation"));
 		if (this.targetModels.length > 0) {
 			this.targetModels.pop();
 		}
@@ -91,20 +84,13 @@ var World = {
 			}
 		});
 
-		this.animationNight1 = new AR.ModelAnimation(targetModelNight, "Night_set_animation");
-		this.animationNight2 = new AR.ModelAnimation(targetModelNight, "happy_birthday5_animation");
+		animations.push(new AR.ModelAnimation(targetModelNight, "Night_set_animation"));
+		animations.push(new AR.ModelAnimation(targetModelNight, "happy_birthday5_animation"));
 
 		if (this.targetModels.length > 0) {
 			this.targetModels.pop();
 		}
 		this.targetModels.push(targetModelNight);
-	},
-	startDayModelAnimation: function() {
-		if (World.loaded && typeof World.targetModels != "undefined") {
-							alert("startDayModelAnimation");
-			World.resetModel();
-			World.animationDay1.start(200);
-		}
 	},
 	createOverlays: function() {
 		this.imageResource = new AR.ImageResource("assets/car.png");
@@ -166,10 +152,13 @@ var World = {
 	},
 	startModelAnimation: function() {
 		// Resets the properties to the initial values.
-				alert("startModelAnimation");
-
-		World.startNightModelAnimation();
-		World.startDayModelAnimation();
+		alert("startModelAnimation");
+		if (World.loaded && typeof World.targetModels != "undefined") {
+			var i;
+			for (i in animations) {
+				animations[i].start(200);
+			}
+		}
 	},
 	disappear: function() {
 		World.trackableVisible = false;
