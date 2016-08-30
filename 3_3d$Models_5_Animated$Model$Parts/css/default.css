@@ -12,8 +12,8 @@
 	display: table;
 }
 .button {
-	padding-top: 12px;
+	padding-top: 15px;
 	position: static;
-	width: 30%;
+	width: 50%;
 	text-align: center;
 }
