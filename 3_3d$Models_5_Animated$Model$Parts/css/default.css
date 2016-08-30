@@ -11,3 +11,9 @@
 	opacity: 0.7;
 	display: table;
 }
+.modelbutton {
+	padding-top: 12px;
+	position: absolute;
+	width: 30%;
+	text-align: center;
+}

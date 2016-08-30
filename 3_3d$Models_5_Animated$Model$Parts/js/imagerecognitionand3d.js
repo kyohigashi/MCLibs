@@ -1,16 +1,48 @@
 var World = {
 	loaded: false,
 	trackableVisible: false,
+	targetModels: [],
 
 	init: function() {
 		this.createOverlays();
 	},
-	loadModeAndTracker: function() {
+	loadDayModeAndTracker: function() {
 		this.loadDayModel();
-		this.loadTracker();
+		this.tracker = new AR.Tracker("assets/tracker.wtc", {
+			onLoaded: this.loadingStep
+		});
+
+		var trackable = new AR.Trackable2DObject(this.tracker, "*", {
+			drawables: {
+				cam: World.targetModels
+			},
+			onEnterFieldOfVision: this.appear,
+			onExitFieldOfVision: this.disappear
+		});
+	},
+	loadNightModeAndTracker: function() {
+		this.loadNightModel();
+		this.tracker = new AR.Tracker("assets/tracker.wtc", {
+			onLoaded: this.loadingStep
+		});
+
+		var trackable = new AR.Trackable2DObject(this.tracker, "*", {
+			drawables: {
+				cam: World.targetModels
+			},
+			onEnterFieldOfVision: this.appear,
+			onExitFieldOfVision: this.disappear
+		});
+	},
+	startNightModelAnimation: function() {
+		if (World.loaded && typeof World.targetModelNight != "undefined") {
+			World.resetModel();
+			World.animationNight1.start(200);
+			World.animationNight2.start(200);
+		}
 	},
 	loadDayModel: function() {
-		this.targetModelDay = new AR.Model("assets/night_set.wt3", {
+		var targetModelDay = new AR.Model("assets/Day_set_0829_modify.wt3", {
 			onLoaded: this.loadingStep,
 			/*
 				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
@@ -31,50 +63,73 @@ var World = {
 			}
 		});
 
-		this.animationDay1 = new AR.ModelAnimation(this.targetModelDay, "Night_set_animation");
-		this.animationDay2 = new AR.ModelAnimation(this.targetModelDay, "happy_birthday5_animation");
-		this.appearingAnimation = this.createAppearingAnimation(this.targetModelDay, 0.045);
+		this.animationDay1 = new AR.ModelAnimation(targetModelDay, "happy_birthday5_animation"); 
+		if (this.targetModels.length > 0) {
+			this.targetModels.pop();
+		}
+		this.targetModels.push(targetModelNight);
 	},
-	loadTracker: function() {
-		this.tracker = new AR.Tracker("assets/tracker.wtc", {
-			onLoaded: this.loadingStep
-		});
-
-		var trackable = new AR.Trackable2DObject(this.tracker, "*", {
-			drawables: {
-				cam: [this.targetModelDay]
+	loadNightModel: function() {
+		var targetModelNight = new AR.Model("assets/night_set.wt3", {
+			onLoaded: this.loadingStep,
+			/*
+				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
+				Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
+			*/
+			scale: {
+				x: 0.003,
+				y: 0.003,
+				z: 0.003
 			},
-			onEnterFieldOfVision: this.appear,
-			onExitFieldOfVision: this.disappear
+			translate: {
+				x: 0.0,
+				y: 0.05,
+				z: 0.0
+			},
+			rotate: {
+				roll: 0
+			}
 		});
-	},
 
+		this.animationNight1 = new AR.ModelAnimation(targetModelNight, "Night_set_animation");
+		this.animationNight2 = new AR.ModelAnimation(targetModelNight, "happy_birthday5_animation");
+
+		if (this.targetModels.length > 0) {
+			this.targetModels.pop();
+		}
+		this.targetModels.push(targetModelNight);
+	},
+	loadDayModeAndTracker: function() {
+		this.loadDayModel();
+	},
+	startDayModelAnimation: function() {
+
+	},
 	createOverlays: function() {
 		this.imageResource = new AR.ImageResource("assets/car.png");
 		this.markerDrawable_idle = new AR.ImageDrawable(this.imageResource, 2.5, {
 			zOrder: 0,
 			opacity: 1.0
 		});
-		// this.loadModeAndTracker();
-
 	},
 
 	loadingStep: function() {
-		if (World.targetModelDay.isLoaded() && World.tracker.isLoaded()) {
+		if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.tracker.isLoaded()) {
 			World.loaded = true;
-			var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
-			var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
-			document.getElementById('loadingMessage').innerHTML =
-				"<div" + cssDivLeft + ">Scan CarAd Tracker Image:</div>" +
-				"<div" + cssDivRight + "><img src='assets/car.png'></img></div>";
-			// Remove Scan target message after 10 sec.
-			setTimeout(function() {
-				var e = document.getElementById('loadingMessage');
-				e.parentElement.removeChild(e);
-			}, 10000);
+			// var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
+			// var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
+			// document.getElementById('loadingMessage').innerHTML =
+			// 	"<div" + cssDivLeft + ">Scan CarAd Tracker Image:</div>" +
+			// 	"<div" + cssDivRight + "><img src='assets/car.png'></img></div>";
+			// // Remove Scan target message after 10 sec.
+			// setTimeout(function() {
+			// 	var e = document.getElementById('loadingMessage');
+			// 	e.parentElement.removeChild(e);
+			// }, 10000);
 
-			if (World.trackableVisible && !World.appearingAnimation.isRunning()) {
-				World.appearingAnimation.start();
+			if (World.trackableVisible) {
+				var appearingAnimation = this.createAppearingAnimation(World.targetModels[0], 0.045);
+				appearingAnimation.appearingAnimation.start();
 			}
 		}
 	},
@@ -102,24 +157,21 @@ var World = {
 	},
 	startModelAnimation: function() {
 		// Resets the properties to the initial values.
-		if (World.loaded) {
-			World.resetModel();
-			World.animationDay1.start(200);
-			World.animationDay2.start(200);
-			// World.animationDay3.start(-1);
-			// World.animationDay4.start(-1);
-			// World.animationDay5.start(-1);
-			// World.animationDay6.start(-1);
-			// World.animationDay7.start(-1);
-			// World.animationDay8.start(-1);
-		}
+		World.startNightModelAnimation();
+		World.startDayModelAnimation();
 	},
 	disappear: function() {
 		World.trackableVisible = false;
 	},
 	resetModel: function() {
-		World.targetModelDay.rotate.roll = -25;
+		if (typeof World.targetModelNight != "undefined") {
+			World.targetModelNight.rotate.roll = -25;
+		}
+		if (typeof World.targetModelDay != "undefined") {
+			World.targetModelDay.rotate.roll = -25;
+		}
 	}
+
 };
 
 World.init();
