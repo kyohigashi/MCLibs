@@ -22,14 +22,14 @@ var World = {
 		});
 	},
 	loadNightModeAndTracker: function() {
-		
+
 		this.tracker = new AR.Tracker("assets/tracker.wtc", {
 			onLoaded: this.loadingStep
 		});
 
 		var trackable = new AR.Trackable2DObject(this.tracker, "Small-ICC-firework-version-chop", {
 			drawables: {
-				cam: [this.loadNightModel("assets/night_set.wt3", [])]
+				cam: [this.loadModel("assets/night_set.wt3", ["Night_set_animation", "happy_birthday5_animation"])]
 			},
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
@@ -37,7 +37,7 @@ var World = {
 
 		var trackable2 = new AR.Trackable2DObject(this.tracker, "Small-ICC-chop", {
 			drawables: {
-				cam: [this.loadNightModel("assets/night_set.wt3", [])]
+				cam: [this.loadModel("assets/skyship.wt3", ["Animation_00"])]
 			},
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
@@ -70,7 +70,7 @@ var World = {
 		}
 		this.targetModels.push(targetModelDay);
 	},
-	loadNightModel: function(file,animationNames) {
+	loadModel: function(file, animationNames) {
 		var targetModelNight = new AR.Model(file, {
 			onLoaded: this.loadingStep,
 			/*
@@ -91,13 +91,12 @@ var World = {
 				roll: 0
 			}
 		});
-
-		this.animations.push(new AR.ModelAnimation(targetModelNight, "Night_set_animation"));
-		this.animations.push(new AR.ModelAnimation(targetModelNight, "happy_birthday5_animation"));
-
-		// if (this.targetModels.length > 0) {
-		// 	this.targetModels.pop();
-		// }
+		if (typeof animationNames != "undefined") {
+			var i;
+			for (i in animationNames) {
+				this.animations.push(new AR.ModelAnimation(targetModelNight, animationNames[i]));
+			}
+		}
 		this.targetModels.push(targetModelNight);
 		return targetModelNight;
 	},
