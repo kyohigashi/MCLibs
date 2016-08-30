@@ -104,8 +104,8 @@ var World = {
 		// Resets the properties to the initial values.
 		if (World.loaded) {
 			World.resetModel();
-			World.animationDay1.start(-1);
-			World.animationDay2.start(-1);
+			World.animationDay1.start(200);
+			World.animationDay2.start(200);
 			// World.animationDay3.start(-1);
 			// World.animationDay4.start(-1);
 			// World.animationDay5.start(-1);
@@ -119,8 +119,7 @@ var World = {
 	},
 	resetModel: function() {
 		World.targetModelDay.rotate.roll = -25;
-	},
-
+	}
 };
 
 World.init();
