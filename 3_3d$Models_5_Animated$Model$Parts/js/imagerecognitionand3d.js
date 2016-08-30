@@ -101,6 +101,7 @@ var World = {
 	},
 	startDayModelAnimation: function() {
 		if (World.loaded && typeof World.targetModels != "undefined") {
+							alert("startDayModelAnimation");
 			World.resetModel();
 			World.animationDay1.start(200);
 		}
@@ -165,6 +166,8 @@ var World = {
 	},
 	startModelAnimation: function() {
 		// Resets the properties to the initial values.
+				alert("startModelAnimation");
+
 		World.startNightModelAnimation();
 		World.startDayModelAnimation();
 	},
