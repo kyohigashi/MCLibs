@@ -99,9 +99,6 @@ var World = {
 		}
 		this.targetModels.push(targetModelNight);
 	},
-	loadDayModeAndTracker: function() {
-		this.loadDayModel();
-	},
 	startDayModelAnimation: function() {
 		if (World.loaded && typeof World.targetModels != "undefined") {
 			World.resetModel();
