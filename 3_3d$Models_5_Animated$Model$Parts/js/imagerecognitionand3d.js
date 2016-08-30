@@ -109,10 +109,8 @@ var World = {
 	},
 
 	loadingStep: function() {
-		alert("loadingStep");
 		if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.tracker.isLoaded()) {
 			World.loaded = true;
-			alert("World.loaded");
 
 			var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
 			var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
@@ -160,7 +158,6 @@ var World = {
 	},
 	startModelAnimation: function() {
 		// Resets the properties to the initial values.
-		alert("startModelAnimation");
 		if (World.loaded && typeof World.targetModels != "undefined") {
 			var i;
 			for (i in World.animations) {
