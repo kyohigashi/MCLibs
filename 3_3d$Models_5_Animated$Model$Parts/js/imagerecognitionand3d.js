@@ -56,7 +56,7 @@ var World = {
 				roll: 0
 			}
 		});
-		animations.push(new AR.ModelAnimation(targetModelDay, "I_love_HK4_animation"));
+		this.animations.push(new AR.ModelAnimation(targetModelDay, "I_love_HK4_animation"));
 		if (this.targetModels.length > 0) {
 			this.targetModels.pop();
 		}
@@ -84,8 +84,8 @@ var World = {
 			}
 		});
 
-		animations.push(new AR.ModelAnimation(targetModelNight, "Night_set_animation"));
-		animations.push(new AR.ModelAnimation(targetModelNight, "happy_birthday5_animation"));
+		this.animations.push(new AR.ModelAnimation(targetModelNight, "Night_set_animation"));
+		this.animations.push(new AR.ModelAnimation(targetModelNight, "happy_birthday5_animation"));
 
 		if (this.targetModels.length > 0) {
 			this.targetModels.pop();
@@ -155,8 +155,8 @@ var World = {
 		alert("startModelAnimation");
 		if (World.loaded && typeof World.targetModels != "undefined") {
 			var i;
-			for (i in animations) {
-				animations[i].start(200);
+			for (i in World.animations) {
+				World.animations[i].start(200);
 			}
 		}
 	},
