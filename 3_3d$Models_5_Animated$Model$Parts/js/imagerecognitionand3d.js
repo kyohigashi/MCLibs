@@ -42,7 +42,7 @@ var World = {
 		}
 	},
 	loadDayModel: function() {
-		var targetModelDay = new AR.Model("assets/Day_set_0829_modify.wt3", {
+		var targetModelDay = new AR.Model("assets/night_set.wt3", {
 			onLoaded: this.loadingStep,
 			/*
 				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
