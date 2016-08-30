@@ -67,7 +67,7 @@ var World = {
 		if (this.targetModels.length > 0) {
 			this.targetModels.pop();
 		}
-		this.targetModels.push(targetModelNight);
+		this.targetModels.push(targetModelDay);
 	},
 	loadNightModel: function() {
 		var targetModelNight = new AR.Model("assets/night_set.wt3", {
