@@ -63,7 +63,7 @@ var World = {
 			}
 		});
 
-		this.animationDay1 = new AR.ModelAnimation(targetModelDay, "sky100_animation");
+		this.animationDay1 = new AR.ModelAnimation(targetModelDay, "I_love_HK4_animation");
 		if (this.targetModels.length > 0) {
 			this.targetModels.pop();
 		}
