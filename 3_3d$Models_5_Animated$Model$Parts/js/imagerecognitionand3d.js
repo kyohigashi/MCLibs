@@ -10,7 +10,7 @@ var World = {
 		this.loadTracker();
 	},
 	loadModel: function() {
-		this.targetModelDay = new AR.Model("assets/Day_set_0829_modify.wt3", {
+		this.targetModelDay = new AR.Model("assets/night_set.wt3", {
 			onLoaded: this.loadingStep,
 			/*
 				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
@@ -31,14 +31,8 @@ var World = {
 			}
 		});
 
-		this.animationDay1 = new AR.ModelAnimation(this.targetModelDay, "I_love_HK4_animation");
-		this.animationDay2 = new AR.ModelAnimation(this.targetModelDay, "I_love_SKY100_animation");
-		this.animationDay3 = new AR.ModelAnimation(this.targetModelDay, "I_love_u_animation");
-		this.animationDay4 = new AR.ModelAnimation(this.targetModelDay, "cloud_animation");
-		this.animationDay5 = new AR.ModelAnimation(this.targetModelDay, "happy_birthday5_animation");
-		this.animationDay6 = new AR.ModelAnimation(this.targetModelDay, "sky100_animation");
-		this.animationDay7 = new AR.ModelAnimation(this.targetModelDay, "toppoghk_animation");
-		this.animationDay8 = new AR.ModelAnimation(this.targetModelDay, "whereami_amimation");
+		this.animationDay1 = new AR.ModelAnimation(this.targetModelDay, "Night_set_animation");
+		this.animationDay2 = new AR.ModelAnimation(this.targetModelDay, "happy_birthday5_animation");
 		this.appearingAnimation = this.createAppearingAnimation(this.targetModelDay, 0.045);
 	},
 	loadTracker: function() {
@@ -84,7 +78,6 @@ var World = {
 			}
 		}
 	},
-
 	createAppearingAnimation: function(model, scale) {
 		/*
 			The animation scales up the 3D model once the target is inside the field of vision. Creating an animation on a single property of an object is done using an AR.PropertyAnimation. Since the car model needs to be scaled up on all three axis, three animations are needed. These animations are grouped together utilizing an AR.AnimationGroup that allows them to play them in parallel.
@@ -103,18 +96,16 @@ var World = {
 
 		return new AR.AnimationGroup(AR.CONST.ANIMATION_GROUP_TYPE.PARALLEL, [sx, sy, sz]);
 	},
-
 	appear: function() {
 		World.trackableVisible = true;
-		this.startModelAnimation();
+		World.startModelAnimation();
 	},
-
 	startModelAnimation: function() {
 		// Resets the properties to the initial values.
 		if (World.loaded) {
 			World.resetModel();
-			// World.animationDay1.start(200);
-			World.animationDay2.start(200);
+			World.animationDay1.start(-1);
+			World.animationDay2.start(-1);
 			// World.animationDay3.start(-1);
 			// World.animationDay4.start(-1);
 			// World.animationDay5.start(-1);
@@ -123,11 +114,9 @@ var World = {
 			// World.animationDay8.start(-1);
 		}
 	},
-
 	disappear: function() {
 		World.trackableVisible = false;
 	},
-
 	resetModel: function() {
 		World.targetModelDay.rotate.roll = -25;
 	},
