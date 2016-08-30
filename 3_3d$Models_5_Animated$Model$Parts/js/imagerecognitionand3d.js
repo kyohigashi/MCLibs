@@ -164,7 +164,9 @@ var World = {
 		if (World.loaded && typeof World.targetModels != "undefined") {
 			var i;
 			for (i in World.animations) {
-				World.animations[i].start(200);
+				try {
+					World.animations[i].start(200);
+				} catch (err) {}
 			}
 		}
 	},
