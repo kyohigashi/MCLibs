@@ -55,7 +55,7 @@ var World = {
 			zOrder: 0,
 			opacity: 1.0
 		});
-		this.loadModeAndTracker();
+		// this.loadModeAndTracker();
 
 	},
 
