@@ -35,7 +35,7 @@ var World = {
 		});
 	},
 	startNightModelAnimation: function() {
-		if (World.loaded && typeof World.targetModelNight != "undefined") {
+		if (World.loaded && typeof World.targetModels != "undefined") {
 			World.resetModel();
 			World.animationNight1.start(200);
 			World.animationNight2.start(200);
@@ -103,7 +103,10 @@ var World = {
 		this.loadDayModel();
 	},
 	startDayModelAnimation: function() {
-
+		if (World.loaded && typeof World.targetModels != "undefined") {
+			World.resetModel();
+			World.animationDay1.start(200);
+		}
 	},
 	createOverlays: function() {
 		this.imageResource = new AR.ImageResource("assets/car.png");
