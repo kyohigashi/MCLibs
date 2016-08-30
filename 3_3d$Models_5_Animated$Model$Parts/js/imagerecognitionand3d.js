@@ -6,10 +6,10 @@ var World = {
 		this.createOverlays();
 	},
 	loadModeAndTracker: function() {
-		this.loadModel();
+		this.loadDayModel();
 		this.loadTracker();
 	},
-	loadModel: function() {
+	loadDayModel: function() {
 		this.targetModelDay = new AR.Model("assets/night_set.wt3", {
 			onLoaded: this.loadingStep,
 			/*
