@@ -119,16 +119,20 @@ var World = {
 	loadingStep: function() {
 		if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.tracker.isLoaded()) {
 			World.loaded = true;
-			// var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
-			// var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
-			// document.getElementById('loadingMessage').innerHTML =
-			// 	"<div" + cssDivLeft + ">Scan CarAd Tracker Image:</div>" +
-			// 	"<div" + cssDivRight + "><img src='assets/car.png'></img></div>";
-			// // Remove Scan target message after 10 sec.
-			// setTimeout(function() {
-			// 	var e = document.getElementById('loadingMessage');
-			// 	e.parentElement.removeChild(e);
-			// }, 10000);
+			var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
+			var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
+			document.getElementById('loadingMessage').innerHTML =
+				"<div" + cssDivLeft + ">Scan CarAd Tracker Image:</div>" +
+				"<div" + cssDivRight + "><img src='assets/car.png'></img></div>";
+			// Remove Scan target message after 10 sec.
+			setTimeout(function() {
+				var e = document.getElementById('loadingMessage');
+				e.parentElement.removeChild(e);
+				var b1 = document.getElementById('modelbutton');
+				var b2 = document.getElementById('modelbutton2');
+				b1.parentElement.removeChild(b1);
+				b2.parentElement.removeChild(b2);
+			}, 10000);
 
 			if (World.trackableVisible) {
 				var appearingAnimation = this.createAppearingAnimation(World.targetModels[0], 0.045);
