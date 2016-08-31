@@ -10,11 +10,10 @@
 	left: 0;
 	opacity: 0.7;
 	display: table;
-	margin-bottom: 20%
 }
 .buttonSelection {
 	padding-top: 5px;
-	position: relative;
+	position: static;
 	left: 30%;	
 }
 .button {
