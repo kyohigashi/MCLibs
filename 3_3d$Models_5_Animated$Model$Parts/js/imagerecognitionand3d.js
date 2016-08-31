@@ -35,13 +35,13 @@ var World = {
 			onExitFieldOfVision: this.disappear
 		});
 
-		var trackable2 = new AR.Trackable2DObject(this.tracker, "Small-ICC-chop", {
-			drawables: {
-				cam: [this.loadModel("assets/ICC_day_0831.wt3", ["cloud_grp_animation","happy_birthday5_animation"])]
-			},
-			onEnterFieldOfVision: this.appear,
-			onExitFieldOfVision: this.disappear
-		});
+		// var trackable2 = new AR.Trackable2DObject(this.tracker, "Small-ICC-chop", {
+		// 	drawables: {
+		// 		cam: [this.loadModel("assets/ICC_day_0831.wt3", ["cloud_grp_animation","happy_birthday5_animation"])]
+		// 	},
+		// 	onEnterFieldOfVision: this.appear,
+		// 	onExitFieldOfVision: this.disappear
+		// });
 	},
 	loadDayModel: function() {
 		var targetModelDay = new AR.Model("assets/skydive_0831.wt3", {
