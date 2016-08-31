@@ -29,7 +29,7 @@ var World = {
 
 		var trackable = new AR.Trackable2DObject(this.tracker, "Small-ICC-firework-version-chop", {
 			drawables: {
-				cam: [this.loadModel("assets/night_set.wt3", ["Night_set_animation", "happy_birthday5_animation"])]
+				cam: [this.loadModel("assets/ICC_night_0831.wt3", ["Night_set_animation", "happy_birthday5_animation"])]
 			},
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
@@ -37,14 +37,14 @@ var World = {
 
 		var trackable2 = new AR.Trackable2DObject(this.tracker, "Small-ICC-chop", {
 			drawables: {
-				cam: [this.loadModel("assets/skyship.wt3", ["Animation_00"])]
+				cam: [this.loadModel("assets/ICC_day_0831.wt3", ["cloud_grp_animation","happy_birthday5_animation"])]
 			},
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
 		});
 	},
 	loadDayModel: function() {
-		var targetModelDay = new AR.Model("assets/Day_set_0829_modify.wt3", {
+		var targetModelDay = new AR.Model("assets/skydive_0831.wt3", {
 			onLoaded: this.loadingStep,
 			/*
 				The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
@@ -64,7 +64,7 @@ var World = {
 				roll: 0
 			}
 		});
-		this.animations.push(new AR.ModelAnimation(targetModelDay, "I_love_HK4_animation"));
+		this.animations.push(new AR.ModelAnimation(targetModelDay, "group3_animation"));
 		if (this.targetModels.length > 0) {
 			this.targetModels.pop();
 		}
