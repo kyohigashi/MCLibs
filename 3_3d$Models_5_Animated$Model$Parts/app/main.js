@@ -1,4 +1,8 @@
 define(function(require) {
+    function mainBase() {}
+    mainBase.prototype = {
+        
+    };
     var $ = require('jquery');
     $(function() {
         //Display backbone and underscore versions
@@ -28,16 +32,16 @@ define(function(require) {
                         if (World.modelName == "ICC_happybirthday_0901.wt3") {
                             World.loadModeAndTracker("assets/ICC_happybirthday_0901.wt3", ["Night_set_animation", "cloud_grp_animaton", "happy_birthday5_animation"]);
                         }else{
-                            World.loadModeAndTracker("assets/ICC_ilovehk_0901.wt3",["I_Iove_HK4_anima"]);
+                            World.loadModeAndTracker("assets/ICC_ilovehk_0901.wt3",["I_love_HK4_animation"]);
                         }
                     }
                 }
             });
 
-            $('input[value="' + World.modelName +'"]').prop('checked', true);
+            $('input[value="' + mainBase.buildSector +'"]').prop('checked', true);
             $('input[type="checkbox"]').on('change', function() {
                 $('input[type="checkbox"]').not(this).prop('checked', false);
-                World.modelName = this.getAttribute("value");
+                mainBase.prototype.buildSector = this.getAttribute("value");
             });
 
         });
@@ -50,7 +54,5 @@ define(function(require) {
 
     });
 
-    function mainBase() {}
-    mainBase.prototype = {};
     return mainBase;
 });
