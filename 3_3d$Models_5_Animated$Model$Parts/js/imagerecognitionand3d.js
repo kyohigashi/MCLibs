@@ -9,18 +9,17 @@ var World = {
 		this.createOverlays();
 	},
 	clearModel: function() {
-		this.tracker.destroy();
-		// var i;
-		// for (i in this.animations) {
-		// 	this.animations[i].destroy();
-		// }
-		// var j;
-		// for (j in this.targetModels) {
-		// 	this.targetModels[j].destroy();
-		// }
-		// this.tracker = {};
-		// this.targetModels = [];
-		// this.animations = [];
+		var i;
+		for (i in this.animations) {
+			this.animations[i].destroy();
+		}
+		var j;
+		for (j in this.targetModels) {
+			this.targetModels[j].destroy();
+		}
+		this.tracker = {};
+		this.targetModels = [];
+		this.animations = [];
 	},
 	loadDayModeAndTracker: function() {
 		this.loadDayModel();
