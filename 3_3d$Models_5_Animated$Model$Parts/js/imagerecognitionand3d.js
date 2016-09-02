@@ -1,4 +1,5 @@
 var World = {
+	modelName: "",
 	loaded: false,
 	trackableVisible: false,
 	targetModels: [],
@@ -6,6 +7,11 @@ var World = {
 
 	init: function() {
 		this.createOverlays();
+	},
+	clearModel: function() {
+		this.tracker = {};
+		this.targetModels = [];
+		this.animations = [];
 	},
 	loadDayModeAndTracker: function() {
 		this.loadDayModel();
@@ -23,7 +29,7 @@ var World = {
 
 	},
 	loadModeAndTracker: function(name, animationNames) {
-
+		this.clearModel();
 		this.tracker = new AR.Tracker("assets/tracker.wtc", {
 			onLoaded: this.loadingStep
 		});
