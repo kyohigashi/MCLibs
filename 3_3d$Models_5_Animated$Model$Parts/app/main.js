@@ -41,12 +41,12 @@ define(function(require) {
             });
 
         });
-        // $("#loadmodelButtonSkyDrive").click(function() {
-        //     World.loadDayModeAndTracker();
-        // });
-        // $("#loadmodelButtonSmallBuild").click(function() {
-        //     World.loadModeAndTracker("assets/ICC_happybirthday_0901.wt3", ["Night_set_animation", "cloud_grp_animaton", "happy_birthday5_animation"]);
-        // });
+        $("#loadmodelButtonSkyDrive").click(function() {
+            World.loadDayModeAndTracker();
+        });
+        $("#loadmodelButtonSmallBuild").click(function() {
+            World.loadModeAndTracker("assets/ICC_happybirthday_0901.wt3", ["Night_set_animation", "cloud_grp_animaton", "happy_birthday5_animation"]);
+        });
 
     });
 
