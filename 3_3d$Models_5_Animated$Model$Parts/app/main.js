@@ -2,7 +2,7 @@ define(function(require) {
     var $ = require('jquery');
     $(function() {
         //Display backbone and underscore versions
-        $("#loadBuildingWithText").click(function() {
+        $("#selectBuidling").click(function() {
             require('vex').dialog.open({
                 message: 'Select a the building.',
                 input: ['<style>',
