@@ -25,7 +25,7 @@ define(function(require) {
                     if (!data) {
                         return console.log('Cancelled')
                     } else {
-                        if (World.modelName == "ICC_ilovehk_0901.wt3") {
+                        if (World.modelName == "ICC_happybirthday_0901.wt3") {
                             World.loadModeAndTracker("assets/ICC_happybirthday_0901.wt3", ["Night_set_ani b bmation", "cloud_grp_animaton", "happy_birthday5_animation"]);
                         }else{
                             World.loadModeAndTracker("assets/ICC_ilovehk_0901.wt3",["I_love_HK4_anima"]);

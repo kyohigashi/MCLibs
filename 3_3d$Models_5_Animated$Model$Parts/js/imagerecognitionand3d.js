@@ -9,6 +9,15 @@ var World = {
 		this.createOverlays();
 	},
 	clearModel: function() {
+		this.tracker.destroy();
+		var i;
+		for (i in this.animations) {
+			this.animations[i].destroy();
+		}
+		var j;
+		for (j in this.targetModels) {
+			this.targetModels[j].destroy();
+		}
 		this.tracker = {};
 		this.targetModels = [];
 		this.animations = [];
@@ -116,7 +125,7 @@ var World = {
 			document.getElementById('loadingMessage').innerHTML =
 				"<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
 				"<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img></div>"
-				"<div" + cssDivRight + "><img src='assets/small-icc2.jpg'></img></div>";
+			"<div" + cssDivRight + "><img src='assets/small-icc2.jpg'></img></div>";
 			// Remove Scan target message after 10 sec.
 			setTimeout(function() {
 				var e = document.getElementById('loadingMessage');
@@ -133,8 +142,8 @@ var World = {
 				appearingAnimation.appearingAnimation.start();
 			}
 
-			document.getElementById('selectBuidling').innerHTML = 
-			"<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>";
+			document.getElementById('selectBuidling').innerHTML =
+				"<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>";
 
 		}
 	},
