@@ -20,8 +20,9 @@ var World = {
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
 		});
+
 	},
-	loadNightModeAndTracker: function() {
+	loadModeAndTracker: function(name, animationNames) {
 
 		this.tracker = new AR.Tracker("assets/tracker.wtc", {
 			onLoaded: this.loadingStep
@@ -29,19 +30,11 @@ var World = {
 
 		var trackable = new AR.Trackable2DObject(this.tracker, "Small-ICC-firework-version-chop", {
 			drawables: {
-				cam: [this.loadModel("assets/ICC_night_0831.wt3", ["Night_set_animation", "happy_birthday5_animation"])]
+				cam: [this.loadModel(name, animationNames)]
 			},
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
 		});
-
-		// var trackable2 = new AR.Trackable2DObject(this.tracker, "Small-ICC-chop", {
-		// 	drawables: {
-		// 		cam: [this.loadModel("assets/ICC_day_0831.wt3", ["cloud_grp_animation","happy_birthday5_animation"])]
-		// 	},
-		// 	onEnterFieldOfVision: this.appear,
-		// 	onExitFieldOfVision: this.disappear
-		// });
 	},
 	loadDayModel: function() {
 		var targetModelDay = new AR.Model("assets/skydive_0831.wt3", {
@@ -116,7 +109,7 @@ var World = {
 			var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
 			document.getElementById('loadingMessage').innerHTML =
 				"<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
-				"<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img></div>";
+				"<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img></div>"
 				"<div" + cssDivRight + "><img src='assets/small-icc2.jpg'></img></div>";
 			// Remove Scan target message after 10 sec.
 			setTimeout(function() {
@@ -133,6 +126,10 @@ var World = {
 				var appearingAnimation = this.createAppearingAnimation(World.targetModels[0], 0.045);
 				appearingAnimation.appearingAnimation.start();
 			}
+
+			document.getElementById('selectBuidling').innerHTML = 
+			"<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>";
+
 		}
 	},
 	createAppearingAnimation: function(model, scale) {

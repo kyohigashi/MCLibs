@@ -21,3 +21,13 @@
 	text-align: center;
 	padding: 20px;
 }
+.hs-brand-button {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    text-shadow: none !important;
+    background-color: #ff8000;
+    border: none;
+    padding: 0.84em 1.47em;
+    font-size: 1.2em;
+    line-height: 1.2em;
+}

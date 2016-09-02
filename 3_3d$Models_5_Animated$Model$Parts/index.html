@@ -7,19 +7,23 @@
     <title></title>
     <script src="architect://architect.js"></script>
     <script type="text/javascript" src="../ade.js"></script>
-
+    <!-- jquery mobile CSS -->
     <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="lib/vex/css/vex.css" />
+    <link rel="stylesheet" href="lib/vex/css/vex-theme-os.css" />
 </head>
-
 <body>
+    <script data-main="app" src="require.js"></script>
+    <div id="selectBuidling">
+    </div>
     <div id="loadingMessage" class="info">
     	Please select the click the model button.... 
     </div>
     <div id="modelbutton" class="buttonSelection">
-            <button id="loadmodelButton" class="button" onclick="World.loadDayModeAndTracker();">Loading Day with cloud and rainbow Model</button>
+            <button id="loadmodelButtonSkyDrive" class="hs-brand-button">Loading Day with cloud and rainbow Model</button>
     </div>
     <div id="modelbutton2" class="buttonSelection">
-     	   	 <button id="loadmodelButton" class="button" onclick="World.loadNightModeAndTracker();">Loading Night Model and small icc building</button>
+     	   	 <button id="loadmodelButtonSmallBuild" class="hs-brand-button">Loading Night Model and small icc building</button>
     </div>
     <script src="js/imagerecognitionand3d.js"></script>
 </body>
