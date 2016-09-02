@@ -3,10 +3,11 @@ define(function(require) {
     mainBase.prototype = {
         
     };
+    var selector = "";
     var $ = require('jquery');
     $(function() {
         //Display backbone and underscore versions
-        $("#selectBuidling").click(function() {
+        $("#loadmodelButtonSkyDrive").click(function() {
             require('vex').dialog.open({
                 message: 'Select a the building.',
                 input: ['<style>',
@@ -29,7 +30,7 @@ define(function(require) {
                     if (!data) {
                         return console.log('Cancelled')
                     } else {
-                        if (World.modelName == "ICC_happybirthday_0901.wt3") {
+                        if (selector == "ICC_happybirthday_0901.wt3") {
                             World.loadModeAndTracker("assets/ICC_happybirthday_0901.wt3", ["Night_set_animation", "cloud_grp_animaton", "happy_birthday5_animation"]);
                         }else{
                             World.loadModeAndTracker("assets/ICC_ilovehk_0901.wt3",["I_love_HK4_animation"]);
@@ -38,10 +39,10 @@ define(function(require) {
                 }
             });
 
-            $('input[value="' + mainBase.buildSector +'"]').prop('checked', true);
+            $('input[value="' + selector +'"]').prop('checked', true);
             $('input[type="checkbox"]').on('change', function() {
                 $('input[type="checkbox"]').not(this).prop('checked', false);
-                mainBase.prototype.buildSector = this.getAttribute("value");
+                selector = this.getAttribute("value");
             });
 
         });

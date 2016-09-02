@@ -1,5 +1,4 @@
 var World = {
-	modelName: "",
 	loaded: false,
 	trackableVisible: false,
 	targetModels: [],
