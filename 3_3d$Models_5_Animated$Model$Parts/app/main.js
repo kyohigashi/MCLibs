@@ -29,7 +29,7 @@ define(function(require) {
                                 return console.log('Cancelled')
                             } else {
                                 try {
-                                    if (selector == "ICC_happybirthday_0901.wt3") {
+                                    if (selector == "assets/ICC_happybirthday_0901.wt3") {
                                         World.loadModeAndTracker("assets/ICC_happybirthday_0901.wt3", ["Night_set_animation", "cloud_grp_animaton", "happy_birthday5_animation"]);
                                     } else {
                                         World.loadModeAndTracker("assets/ICC_ilovehk_0901.wt3", ["I_love_HK4_animation"]);
@@ -61,18 +61,21 @@ define(function(require) {
         modelDidLoad: function() {
             var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
             var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
-            var e =
-                "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
-                "<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img></div>"
-            "<div" + cssDivRight + "><img src='assets/small-icc2.jpg'></img></div>";
+            var e = "";
 
-            $('#loadingMessage').empty().append(e);
             if (World.modelName != "") {
-                alert('modelDidLoad: selectBuidling' + World.modelName);
+                e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
+                    "<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img></div>"
+                "<div" + cssDivRight + "><img src='assets/small-icc2.jpg'></img></div>";
                 $('#selectBuidling').empty().append("<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>");
+            } else {
+                e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
+                    "<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img></div>"
+                "<div" + cssDivRight + "><img src='assets/small-icc2.jpg'></img></div>";
             }
             $('#modelbutton').empty();
             $('#modelbutton2').empty();
+            $('#loadingMessage').empty().append(e);
             // Remove Scan target message after 10 sec.
             setTimeout(function() {
                 var e = document.getElementById('loadingMessage');
