@@ -69,7 +69,8 @@ var World = {
 				z: 0.0
 			},
 			rotate: {
-				roll: 90
+				roll: 90,
+				tilt, -90
 			}
 		});
 		this.animations.push(new AR.ModelAnimation(targetModelDay, "group3_animation"));
