@@ -37,7 +37,6 @@ var World = {
 	},
 	loadModeAndTracker: function(name, animationNames) {
 		this.clearModel();
-		var _tracker = this.tracker;
 		this.tracker = new AR.Tracker("assets/tracker.wtc", {
 			onLoaded: this.loadingStep
 		});
@@ -49,7 +48,6 @@ var World = {
 			onEnterFieldOfVision: this.appear,
 			onExitFieldOfVision: this.disappear
 		});
-		_tracker.destroy();
 	},
 	loadDayModel: function() {
 		var targetModelDay = new AR.Model("assets/skydive_0831.wt3", {
