@@ -59,9 +59,9 @@ var World = {
 				Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
 			*/
 			scale: {
-				x: 0.003,
-				y: 0.003,
-				z: 0.003
+				x: 0.004,
+				y: 0.004,
+				z: 0.004
 			},
 			translate: {
 				x: 0.0,
@@ -69,7 +69,8 @@ var World = {
 				z: 0.0
 			},
 			rotate: {
-				roll: 90
+				roll: 90,
+				tilt: 90
 			}
 		});
 		this.animations.push(new AR.ModelAnimation(targetModelDay, "group3_animation"));
