@@ -65,7 +65,7 @@ var World = {
 			},
 			translate: {
 				x: 0.0,
-				y: -0.2,
+				y: -0.45,
 				z: 0.0
 			},
 			rotate: {
