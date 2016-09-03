@@ -69,7 +69,6 @@ var World = {
 				z: 0.0
 			},
 			rotate: {
-				roll: 90,
 				heading: 90
 			}
 		});
