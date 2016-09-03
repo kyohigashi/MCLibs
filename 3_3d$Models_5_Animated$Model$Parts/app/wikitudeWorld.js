@@ -128,7 +128,7 @@ define(function(require) {
 					var appearingAnimation = this.createAppearingAnimation(World.targetModels[0], 0.045);
 					appearingAnimation.appearingAnimation.start();
 				}
-				controller.modelDidLoad();
+				World.controller.modelDidLoad();
 			}
 		},
 		createAppearingAnimation: function(model, scale) {
