@@ -7,8 +7,8 @@ requirejs.config({
 	baseUrl: 'lib',
 	paths: {
 		app: '../app',
-		jquery: '../lib/jquery/jquery.mobile-1.3.2.min',
-		vex: '../lib/vex/dist/vex.combined'
+		jquery: '../lib/jquery/jquery-1.9.1.min',
+		vex: '../lib/vex/dist/vex.combined',
 	}
 });
 requirejs(['app/main']);

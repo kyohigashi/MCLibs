@@ -3,6 +3,7 @@ define(function(require) {
     mainBase.prototype = {
         
     };
+    var World = require('app/wikitudeWorld');
     var selector = "";
     var $ = require('jquery');
     $(function() {
