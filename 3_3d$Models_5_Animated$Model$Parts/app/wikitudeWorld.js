@@ -1,6 +1,7 @@
 define(function(require) {
 	var $ = require('jquery');
 	var World = {
+		controller: {},
 		modelName: "",
 		loaded: false,
 		trackableVisible: false,
@@ -123,29 +124,11 @@ define(function(require) {
 			if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.tracker.isLoaded()) {
 				World.loaded = true;
 
-				var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
-				var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
-				var e =
-					"<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
-					"<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img></div>"
-				"<div" + cssDivRight + "><img src='assets/small-icc2.jpg'></img></div>";
-
-				$('#loadingMessage').empty().append(e);
-				$('#selectBuidling').empty().append("<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>");
-				$('#modelbutton').empty();
-				$('#modelbutton2').empty();
-				// Remove Scan target message after 10 sec.
-				setTimeout(function() {
-					var e = document.getElementById('loadingMessage');
-					e.parentElement.removeChild(e);
-
-				}, 10000);
-
 				if (World.trackableVisible) {
 					var appearingAnimation = this.createAppearingAnimation(World.targetModels[0], 0.045);
 					appearingAnimation.appearingAnimation.start();
 				}
-
+				controller.modelDidLoad();
 			}
 		},
 		createAppearingAnimation: function(model, scale) {

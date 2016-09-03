@@ -11,7 +11,9 @@ requirejs.config({
 		vex: '../lib/vex/dist/vex.combined',
 	}
 });
-requirejs(['app/main']);
+requirejs(['app/main'], function(main) {
+	main.init();
+});
 requirejs(['vex'], function(vex) {
 	vex.defaultOptions.className = 'vex-theme-os'
 });
