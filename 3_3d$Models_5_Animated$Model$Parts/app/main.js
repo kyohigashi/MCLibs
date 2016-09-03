@@ -21,10 +21,10 @@ define(function(require) {
                     '}',
                     '</style>',
                     '<div class="vex-custom-field-wrapper">',
-                    'I love HK: <input id="input1" type="checkbox" name="FirstName" value="ICC_ilovehk_0901.wt3">',
+                    'I love HK: <input id="input1" type="checkbox" name="FirstName" value="assets/ICC_ilovehk_0901.wt3">',
                     '</div>',
                     '<div class="vex-custom-field-wrapper">',
-                    'ICC happy birthday: <input type="checkbox" name="FirstName" value="ICC_happybirthday_0901.wt3">',
+                    'ICC happy birthday: <input type="checkbox" name="FirstName" value="assets/ICC_happybirthday_0901.wt3">',
                     '</div>'
                 ].join(''),
                 callback: function(data) {
@@ -45,7 +45,7 @@ define(function(require) {
                 }
             });
 
-            $('input[value="' + selector + '"]').prop('checked', true);
+            $('input[value="' + World.modelName + '"]').prop('checked', true);
             $('input[type="checkbox"]').on('change', function() {
                 $('input[type="checkbox"]').not(this).prop('checked', false);
                 selector = this.getAttribute("value");

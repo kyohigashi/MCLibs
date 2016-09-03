@@ -1,6 +1,7 @@
 define(function(require) {
 	var $ = require('jquery');
 	var World = {
+		modelName: "",
 		loaded: false,
 		trackableVisible: false,
 		targetModels: [],
@@ -50,6 +51,7 @@ define(function(require) {
 				onEnterFieldOfVision: this.appear,
 				onExitFieldOfVision: this.disappear
 			});
+			this.modelName = name;
 		},
 		loadDayModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0831.wt3", {
@@ -127,10 +129,9 @@ define(function(require) {
 					"<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
 					"<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img></div>"
 				"<div" + cssDivRight + "><img src='assets/small-icc2.jpg'></img></div>";
-				
-				$('#loadingMessage').empty();
-				$('#loadingMessage').append(e);
-				$('#selectBuidling').append("<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>");
+
+				$('#loadingMessage').empty().append(e);
+				$('#selectBuidling').empty().append("<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>");
 				$('#modelbutton').empty();
 				$('#modelbutton2').empty();
 				// Remove Scan target message after 10 sec.
