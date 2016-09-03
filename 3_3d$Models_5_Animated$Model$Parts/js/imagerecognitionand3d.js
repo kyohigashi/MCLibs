@@ -59,13 +59,13 @@ var World = {
 				Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
 			*/
 			scale: {
-				x: 0.004,
-				y: 0.004,
-				z: 0.004
+				x: 0.005,
+				y: 0.005,
+				z: 0.005
 			},
 			translate: {
 				x: 0.0,
-				y: 0.05,
+				y: 0.0,
 				z: 0.0
 			},
 			rotate: {
