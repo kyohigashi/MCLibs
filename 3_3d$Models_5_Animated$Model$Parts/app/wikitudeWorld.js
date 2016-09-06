@@ -127,7 +127,7 @@ define(function(require) {
 
 		loadingStep: function() {
 			if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.tracker.isLoaded()) {
-				if (typeof _tracker.destroy != "undefined") {
+				if (typeof this._tracker.destroy != "undefined") {
 					World._tracker.destroy();
 					alert("tracker.destroy");
 				}
