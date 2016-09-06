@@ -14,6 +14,7 @@ define(function(require) {
 		clearModel: function() {
 			var i;
 			for (i in this.animations) {
+				this.animations[i].stop();
 				this.animations[i].destroy();
 			}
 			var j;
@@ -25,8 +26,8 @@ define(function(require) {
 			this.animations = [];
 		},
 		loadDayModeAndTracker: function() {
-			this.loadDayModel();
-			this.tracker = new AR.Tracker("assets/tracker.wtc", {
+			this.loadSkyLineModel();
+			this.tracker = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep
 			});
 
@@ -41,7 +42,8 @@ define(function(require) {
 		},
 		loadModeAndTracker: function(name, animationNames) {
 			this.clearModel();
-			this.tracker = new AR.Tracker("assets/tracker.wtc", {
+			var _tracker = this.tracker;
+			this.tracker = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep
 			});
 
@@ -53,8 +55,9 @@ define(function(require) {
 				onExitFieldOfVision: this.disappear
 			});
 			this.modelName = name;
+			_tracker.destroy();
 		},
-		loadDayModel: function() {
+		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0831.wt3", {
 				onLoaded: this.loadingStep,
 				/*
@@ -68,12 +71,11 @@ define(function(require) {
 				},
 				translate: {
 					x: 0.0,
-					y: -0.75,
+					y: 0.0,
 					z: 0.0
 				},
 				rotate: {
-					roll: 90,
-					heading: 90
+					tilt: 90
 				}
 			});
 			this.animations.push(new AR.ModelAnimation(targetModelDay, "group3_animation"));
