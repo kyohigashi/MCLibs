@@ -12,18 +12,18 @@ define(function(require) {
 			this.createOverlays();
 		},
 		clearModel: function() {
-			var i;
-			for (i in this.animations) {
-				this.animations[i].stop();
-				this.animations[i].destroy();
-			}
-			var j;
-			for (j in this.targetModels) {
-				this.targetModels[j].destroy();
-			}
-			this.tracker = {};
-			this.targetModels = [];
-			this.animations = [];
+			// var i;
+			// for (i in this.animations) {
+			// 	this.animations[i].stop();
+			// 	this.animations[i].destroy();
+			// }
+			// var j;
+			// for (j in this.targetModels) {
+			// 	this.targetModels[j].destroy();
+			// }
+			// this.tracker = {};
+			// this.targetModels = [];
+			// this.animations = [];
 		},
 		loadDayModeAndTracker: function() {
 			this.loadSkyLineModel();
@@ -54,9 +54,6 @@ define(function(require) {
 				onExitFieldOfVision: this.disappear
 			});
 			this.modelName = name;
-			// if (typeof _tracker.destroy != "undefined") {
-			// 	_tracker.destroy();
-			// }
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
