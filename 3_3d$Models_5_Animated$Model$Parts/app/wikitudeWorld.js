@@ -11,19 +11,16 @@ define(function(require) {
 		init: function() {
 			this.createOverlays();
 		},
-		clearModel: function() {
-			// var i;
-			// for (i in this.animations) {
-			// 	this.animations[i].stop();
-			// 	this.animations[i].destroy();
-			// }
-			// var j;
-			// for (j in this.targetModels) {
-			// 	this.targetModels[j].destroy();
-			// }
-			// this.tracker = {};
-			// this.targetModels = [];
-			// this.animations = [];
+		clearModel: function(modelAndAnimations) {
+			var i;
+			for (i in modelAndAnimations.animations) {
+				this.animations[i].stop();
+				this.animations[i].destroy();
+			}
+			var j;
+			for (j in modelAndAnimations.model) {
+				this.targetModels[j].destroy();
+			}
 		},
 		loadDayModeAndTracker: function() {
 			this.loadSkyLineModel();
@@ -42,18 +39,19 @@ define(function(require) {
 		},
 		loadModeAndTracker: function(name, animationNames) {
 			this.clearModel();
-			var model = this.loadModel(name, animationNames);
-			alert(model.uri);
+			var modelAndAnimations = this.loadModel(name, animationNames);
 			this.tracker = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep,
 				onDisabled: function() {
 					//tracker has been disabled by the system
+					alert(modelAndAnimations.model.uri);
+					World.clearModel(modelAndAnimations);
 				}
 			});
 
 			var trackable = new AR.Trackable2DObject(this.tracker, "Small-ICC-firework-version-chop", {
 				drawables: {
-					cam: [model]
+					cam: [modelAndAnimations.model]
 				},
 				onEnterFieldOfVision: this.appear,
 				onExitFieldOfVision: this.disappear
@@ -115,7 +113,7 @@ define(function(require) {
 				}
 			}
 			this.targetModels.push(targetModelNight);
-			return targetModelNight;
+			return { model:targetModelNight,animations:this.animations };
 		},
 		createOverlays: function() {
 			this.imageResource = new AR.ImageResource("assets/car.png");
