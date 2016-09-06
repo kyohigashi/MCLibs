@@ -68,13 +68,13 @@ define(function(require) {
 					Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
 				*/
 				scale: {
-					x: 0.010,
-					y: 0.010,
-					z: 0.010
+					x: 0.011,
+					y: 0.011,
+					z: 0.011
 				},
 				translate: {
 					x: 0.0,
-					y: -0.5,
+					y: -0.2,
 					z: 0.0
 				},
 				rotate: {
