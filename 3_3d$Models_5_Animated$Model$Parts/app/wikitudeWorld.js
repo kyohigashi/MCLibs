@@ -127,10 +127,10 @@ define(function(require) {
 
 		loadingStep: function() {
 			if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.tracker.isLoaded()) {
-				if (!World._tracker) {
-					World._tracker.destroy();
-					alert("tracker.destroy");
-				}
+				// if (!World._tracker) {
+				// 	World._tracker.destroy();
+				// 	alert("tracker.destroy");
+				// }
 				World.loaded = true;
 
 				if (World.trackableVisible) {
