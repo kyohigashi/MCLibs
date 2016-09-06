@@ -27,7 +27,7 @@ define(function(require) {
 		},
 		loadDayModeAndTracker: function() {
 			this.loadSkyLineModel();
-			this.tracker = new AR.ClientTracker("assets/tracker.wtc", {
+			this.tracker = new AR.Tracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep
 			});
 
@@ -42,7 +42,7 @@ define(function(require) {
 		},
 		loadModeAndTracker: function(name, animationNames) {
 			this.clearModel();
-			this.tracker = new AR.ClientTracker("assets/tracker.wtc", {
+			this.tracker = new AR.Tracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep
 			});
 
