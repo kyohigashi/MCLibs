@@ -42,13 +42,18 @@ define(function(require) {
 		},
 		loadModeAndTracker: function(name, animationNames) {
 			this.clearModel();
+			var model = this.loadModel(name, animationNames);
+			alert(model.uri);
 			this.tracker = new AR.ClientTracker("assets/tracker.wtc", {
-				onLoaded: this.loadingStep
+				onLoaded: this.loadingStep,
+				onDisabled: function() {
+					//tracker has been disabled by the system
+				}
 			});
 
 			var trackable = new AR.Trackable2DObject(this.tracker, "Small-ICC-firework-version-chop", {
 				drawables: {
-					cam: [this.loadModel(name, animationNames)]
+					cam: [model]
 				},
 				onEnterFieldOfVision: this.appear,
 				onExitFieldOfVision: this.disappear
