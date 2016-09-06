@@ -7,7 +7,6 @@ define(function(require) {
 		trackableVisible: false,
 		targetModels: [],
 		animations: [],
-		_tracker: null,
 
 		init: function() {
 			this.createOverlays();
@@ -43,7 +42,6 @@ define(function(require) {
 		},
 		loadModeAndTracker: function(name, animationNames) {
 			this.clearModel();
-			this._tracker = this.tracker;
 			this.tracker = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep
 			});
