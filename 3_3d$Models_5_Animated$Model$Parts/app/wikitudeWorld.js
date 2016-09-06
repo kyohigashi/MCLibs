@@ -78,7 +78,7 @@ define(function(require) {
 					z: 0.0
 				},
 				rotate: {
-					tilt: 90
+					tilt: -90
 				}
 			});
 			this.animations.push(new AR.ModelAnimation(targetModelDay, "group_animation"));
