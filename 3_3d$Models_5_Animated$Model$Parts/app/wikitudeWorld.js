@@ -7,6 +7,7 @@ define(function(require) {
 		trackableVisible: false,
 		targetModels: [],
 		animations: [],
+		_tracker,
 
 		init: function() {
 			this.createOverlays();
@@ -42,7 +43,7 @@ define(function(require) {
 		},
 		loadModeAndTracker: function(name, animationNames) {
 			this.clearModel();
-			var _tracker = this.tracker;
+			this._tracker = this.tracker;
 			this.tracker = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep
 			});
@@ -55,9 +56,9 @@ define(function(require) {
 				onExitFieldOfVision: this.disappear
 			});
 			this.modelName = name;
-			if (typeof _tracker.destroy != "undefined") {
-				_tracker.destroy();
-			}
+			// if (typeof _tracker.destroy != "undefined") {
+			// 	_tracker.destroy();
+			// }
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0831.wt3", {
@@ -126,6 +127,9 @@ define(function(require) {
 
 		loadingStep: function() {
 			if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.tracker.isLoaded()) {
+				if (typeof _tracker.destroy != "undefined") {
+					World._tracker.destroy();
+				}
 				World.loaded = true;
 
 				if (World.trackableVisible) {
