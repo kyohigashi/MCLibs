@@ -55,7 +55,9 @@ define(function(require) {
 				onExitFieldOfVision: this.disappear
 			});
 			this.modelName = name;
-			_tracker.destroy();
+			if (typeof _tracker.destroy != "undefined") {
+				_tracker.destroy();
+			}
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0831.wt3", {
