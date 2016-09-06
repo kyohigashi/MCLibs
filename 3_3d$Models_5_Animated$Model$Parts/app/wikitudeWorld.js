@@ -38,7 +38,6 @@ define(function(require) {
 
 		},
 		loadModeAndTracker: function(name, animationNames) {
-			this.clearModel();
 			var modelAndAnimations = this.loadModel(name, animationNames);
 			this.tracker = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep,
