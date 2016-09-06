@@ -7,7 +7,7 @@ define(function(require) {
 		trackableVisible: false,
 		targetModels: [],
 		animations: [],
-		_tracker,
+		_tracker:{},
 
 		init: function() {
 			this.createOverlays();

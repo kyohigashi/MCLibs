@@ -69,8 +69,7 @@ define(function(require) {
                 $('#selectBuidling').empty().append("<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>");
             } else {
                 e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
-                    "<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img></div>"
-                "<div" + cssDivRight + "><img src='assets/small-icc2.jpg'></img></div>";
+                    "<div" + cssDivRight + "><img src='assets/skyline.jpg'></img></div>";
             }
             $('#modelbutton').empty();
             $('#modelbutton2').empty();
