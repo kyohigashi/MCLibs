@@ -39,14 +39,15 @@ define(function(require) {
 
 		},
 		loadModeAndTracker: function(name, animationNames) {
+			var oldTarget = null;
 			if (this.targets.length > 0) {
-				var target = this.targets.pop();
-				target.tracker.enabled = false;
-				target.trackable.enabled = false;
-				this.clearModel({
-					model: target.model,
-					animations: target.animations
-				});
+				oldTarget = this.targets.pop();
+				oldTarget.tracker.enabled = false;
+				oldTarget.trackable.enabled = false;
+				// this.clearModel({
+				// 	model: target.model,
+				// 	animations: target.animations
+				// });
 			}
 
 			var modelAndAnimations = this.loadModel(name, animationNames);
@@ -141,7 +142,7 @@ define(function(require) {
 		},
 
 		loadingStep: function() {
-			if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.targets[0].tracker.isLoaded()) {
+			if (World.targets.length > 0 && World.targets[0].model.isLoaded() && World.targets[0].tracker.isLoaded()) {
 				// if (!World._tracker) {
 				// 	World._tracker.destroy();
 				// 	alert("tracker.destroy");
@@ -149,7 +150,7 @@ define(function(require) {
 				World.loaded = true;
 
 				if (World.trackableVisible) {
-					var appearingAnimation = World.createAppearingAnimation(World.targetModels[0], 0.045);
+					var appearingAnimation = World.createAppearingAnimation(World.targets[0].model, 0.045);
 					appearingAnimation.start();
 				}
 				World.controller.modelDidLoad();
