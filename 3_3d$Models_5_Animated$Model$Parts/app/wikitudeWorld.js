@@ -126,7 +126,7 @@ define(function(require) {
 		},
 
 		loadingStep: function() {
-			if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.tracker[World.tracker.lastIndexOf()].isLoaded()) {
+			if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.tracker[0].isLoaded()) {
 				// if (!World._tracker) {
 				// 	World._tracker.destroy();
 				// 	alert("tracker.destroy");
