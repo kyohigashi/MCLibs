@@ -8,17 +8,20 @@ define(function(require) {
 		targetModels: [],
 		animations: [],
 		targets: [],
+	    oldTarget: {},
 
 		init: function() {
 			this.createOverlays();
 		},
-		clearModel: function(modelAndAnimations) {
+		clearModel: function(target) {
 			var i;
-			for (i in modelAndAnimations.animations) {
-				modelAndAnimations.animations[i].stop();
-				modelAndAnimations.animations[i].destroy();
+			for (i in target.animations) {
+				target.animations[i].stop();
+				target.animations[i].destroy();
 			}
-			modelAndAnimations.model.destroy();
+			target.model.destroy();
+			target.tracker.destroy();
+			target.trackable.destroy();
 		},
 		loadDayModeAndTracker: function() {
 			this.loadSkyLineModel();
@@ -39,15 +42,10 @@ define(function(require) {
 
 		},
 		loadModeAndTracker: function(name, animationNames) {
-			var oldTarget = null;
 			if (this.targets.length > 0) {
-				oldTarget = this.targets.pop();
-				oldTarget.tracker.enabled = false;
-				oldTarget.trackable.enabled = false;
-				// this.clearModel({
-				// 	model: target.model,
-				// 	animations: target.animations
-				// });
+				this.oldTarget = this.targets.pop();
+				this.oldTarget.tracker.enabled = false;
+				this.oldTarget.trackable.enabled = false;
 			}
 
 			var modelAndAnimations = this.loadModel(name, animationNames);
@@ -154,6 +152,7 @@ define(function(require) {
 					appearingAnimation.start();
 				}
 				World.controller.modelDidLoad();
+				World.clearModel(World.oldTarget);
 			}
 		},
 		createAppearingAnimation: function(model, scale) {
