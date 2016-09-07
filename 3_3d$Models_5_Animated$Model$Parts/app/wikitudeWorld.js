@@ -44,12 +44,7 @@ define(function(require) {
 		loadModeAndTracker: function(name, animationNames) {
 			var modelAndAnimations = this.loadModel(name, animationNames);
 			var t = new AR.ClientTracker("assets/tracker.wtc", {
-				onLoaded: this.loadingStep,
-				onDisabled: function() {
-					//tracker has been disabled by the system
-					alert(modelAndAnimations.model.uri);
-					// World.clearModel(modelAndAnimations);
-				}
+				onLoaded: this.loadingStep// World.clearModel(modelAndAnimations);
 			});
 			this.targets.push({
 				tracker: t,
@@ -66,12 +61,12 @@ define(function(require) {
 			});
 			this.modelName = name;
 			if (this.targets.length > 1) {
-				var target = this.targets.pop();
-				target.tracker.enabled = false;
-				this.clearModel({
-					model: target.model,
-					animations: target.animations
-				});
+				// var target = this.targets.pop();
+				// target.tracker.enabled = false;
+				// this.clearModel({
+				// 	model: target.model,
+				// 	animations: target.animations
+				// });
 			}
 
 		},
