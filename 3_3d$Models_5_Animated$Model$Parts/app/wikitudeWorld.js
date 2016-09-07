@@ -15,12 +15,12 @@ define(function(require) {
 		clearModel: function(modelAndAnimations) {
 			var i;
 			for (i in modelAndAnimations.animations) {
-				this.animations[i].stop();
-				this.animations[i].destroy();
+				modelAndAnimations.animations[i].stop();
+				modelAndAnimations.animations[i].destroy();
 			}
 			var j;
 			for (j in modelAndAnimations.model) {
-				this.targetModels[j].destroy();
+				modelAndAnimations.model[j].destroy();
 			}
 		},
 		loadDayModeAndTracker: function() {
@@ -61,12 +61,12 @@ define(function(require) {
 			});
 			this.modelName = name;
 			if (this.targets.length > 1) {
-				// var target = this.targets.pop();
-				// target.tracker.enabled = false;
-				// this.clearModel({
-				// 	model: target.model,
-				// 	animations: target.animations
-				// });
+				var target = this.targets.pop();
+				target.tracker.enabled = false;
+				this.clearModel({
+					model: target.model,
+					animations: target.animations
+				});
 			}
 
 		},
