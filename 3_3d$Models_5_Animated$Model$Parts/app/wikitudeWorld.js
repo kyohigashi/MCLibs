@@ -39,32 +39,36 @@ define(function(require) {
 
 		},
 		loadModeAndTracker: function(name, animationNames) {
+			if (this.targets.length > 0) {
+				var target = this.targets.pop();
+				target.tracker.enabled = false;
+				target.trackable.enabled = false;
+				this.clearModel({
+					model: target.model,
+					animations: target.animations
+				});
+			}
+
 			var modelAndAnimations = this.loadModel(name, animationNames);
-			var t = new AR.ClientTracker("assets/tracker.wtc", {
+			var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep// World.clearModel(modelAndAnimations);
 			});
-			this.targets.push({
-				tracker: t,
-				model: modelAndAnimations.model,
-				animations: modelAndAnimations.animations
-			});
-
-			var trackable = new AR.Trackable2DObject(t, "Small-ICC-firework-version-chop", {
+			var _trackable = new AR.Trackable2DObject(_tracker, "Small-ICC-firework-version-chop", {
 				drawables: {
 					cam: [modelAndAnimations.model]
 				},
 				onEnterFieldOfVision: this.appear,
 				onExitFieldOfVision: this.disappear
 			});
+			this.targets.push({
+				tracker: _tracker,
+				trackable: _trackable,
+				model: modelAndAnimations.model,
+				animations: modelAndAnimations.animations
+			});
+
 			this.modelName = name;
-			if (this.targets.length > 1) {
-				var target = this.targets.pop();
-				target.tracker.enabled = false;
-				this.clearModel({
-					model: target.model,
-					animations: target.animations
-				});
-			}
+
 
 		},
 		loadSkyLineModel: function() {
