@@ -67,8 +67,11 @@ define(function(require) {
 			this.modelName = name;
 			if (this.targets.length > 1) {
 				var target = this.targets.pop();
-				alert(target.model.uri);
 				target.tracker.enabled = false;
+				this.clearModel({
+					model: target.model,
+					animations: target.animations
+				});
 			}
 
 		},
