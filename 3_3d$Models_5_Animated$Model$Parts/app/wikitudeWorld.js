@@ -60,6 +60,7 @@ define(function(require) {
 			});
 			this.modelName = name;
 			if (this.targetModels.length > 1) {
+				alert(modelAndAnimations.model.uri);
 				var tracker1 = this.targetModels.pop();
 				tracker1.enabled = false;
 			}
