@@ -7,7 +7,7 @@ define(function(require) {
 		trackableVisible: false,
 		targetModels: [],
 		animations: [],
-		tracker:[],
+		tracker: [],
 
 		init: function() {
 			this.createOverlays();
@@ -59,6 +59,11 @@ define(function(require) {
 				onExitFieldOfVision: this.disappear
 			});
 			this.modelName = name;
+			if (this.targetModels.length > 1) {
+				var tracker1 = this.targetModels.pop();
+				tracker1.enabled = false;
+			}
+
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
@@ -115,7 +120,10 @@ define(function(require) {
 				}
 			}
 			this.targetModels.push(targetModelNight);
-			return { model:targetModelNight,animations:this.animations };
+			return {
+				model: targetModelNight,
+				animations: this.animations
+			};
 		},
 		createOverlays: function() {
 			this.imageResource = new AR.ImageResource("assets/car.png");
