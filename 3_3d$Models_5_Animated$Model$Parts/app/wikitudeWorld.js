@@ -18,10 +18,7 @@ define(function(require) {
 				modelAndAnimations.animations[i].stop();
 				modelAndAnimations.animations[i].destroy();
 			}
-			var j;
-			for (j in modelAndAnimations.model) {
-				modelAndAnimations.model[j].destroy();
-			}
+			modelAndAnimations.model.destroy();
 		},
 		loadDayModeAndTracker: function() {
 			this.loadSkyLineModel();
