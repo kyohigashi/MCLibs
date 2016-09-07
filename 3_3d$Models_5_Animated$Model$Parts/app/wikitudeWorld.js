@@ -46,6 +46,7 @@ define(function(require) {
 				this.oldTarget = this.targets.pop();
 				this.oldTarget.tracker.enabled = false;
 				this.oldTarget.trackable.enabled = false;
+				this.oldTarget.trackable.drawables.cam  = [];
 			}
 
 			var modelAndAnimations = this.loadModel(name, animationNames);
@@ -152,7 +153,7 @@ define(function(require) {
 					appearingAnimation.start();
 				}
 				World.controller.modelDidLoad();
-				World.clearModel(World.oldTarget);
+				// World.clearModel(World.oldTarget);
 			}
 		},
 		createAppearingAnimation: function(model, scale) {
