@@ -76,9 +76,7 @@ define(function(require) {
             $('#loadingMessage').empty().append(e);
             // Remove Scan target message after 10 sec.
             setTimeout(function() {
-                var e = document.getElementById('loadingMessage');
-                e.parentElement.removeChild(e);
-
+               $('#loadingMessage').empty();
             }, 10000);
         }
     };
