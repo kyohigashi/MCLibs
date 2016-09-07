@@ -143,7 +143,7 @@ define(function(require) {
 
 				if (World.trackableVisible) {
 					var appearingAnimation = World.createAppearingAnimation(World.targetModels[0], 0.045);
-					appearingAnimation.appearingAnimation.start();
+					appearingAnimation.start();
 				}
 				World.controller.modelDidLoad();
 			}
