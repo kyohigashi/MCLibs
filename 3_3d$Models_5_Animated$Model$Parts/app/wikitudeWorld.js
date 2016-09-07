@@ -7,7 +7,7 @@ define(function(require) {
 		trackableVisible: false,
 		targetModels: [],
 		animations: [],
-		tracker: [],
+		targets: [],
 
 		init: function() {
 			this.createOverlays();
@@ -28,7 +28,9 @@ define(function(require) {
 			var t = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep
 			});
-			this.tracker.push(t);
+			this.targets.push({
+				tracker: t
+			});
 
 			var trackable = new AR.Trackable2DObject(t, "*", {
 				drawables: {
@@ -49,7 +51,11 @@ define(function(require) {
 					// World.clearModel(modelAndAnimations);
 				}
 			});
-			this.tracker.push(t);
+			this.targets.push({
+				tracker: t,
+				model: modelAndAnimations.model,
+				animations: modelAndAnimations.animations
+			});
 
 			var trackable = new AR.Trackable2DObject(t, "Small-ICC-firework-version-chop", {
 				drawables: {
@@ -59,10 +65,10 @@ define(function(require) {
 				onExitFieldOfVision: this.disappear
 			});
 			this.modelName = name;
-			if (this.targetModels.length > 1) {
-				alert(modelAndAnimations.model.uri);
-				var tracker1 = this.targetModels.pop();
-				tracker1.enabled = false;
+			if (this.targets.length > 1) {
+				var target = this.targets.pop();
+				alert(target.model.uri);
+				target.tracker.enabled = false;
 			}
 
 		},
@@ -115,6 +121,7 @@ define(function(require) {
 				}
 			});
 			if (typeof animationNames != "undefined") {
+				this.animations = [];
 				var i;
 				for (i in animationNames) {
 					this.animations.push(new AR.ModelAnimation(targetModelNight, animationNames[i]));
@@ -135,7 +142,7 @@ define(function(require) {
 		},
 
 		loadingStep: function() {
-			if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.tracker[0].isLoaded()) {
+			if (World.targetModels.length > 0 && World.targetModels[0].isLoaded() && World.targets[0].tracker.isLoaded()) {
 				// if (!World._tracker) {
 				// 	World._tracker.destroy();
 				// 	alert("tracker.destroy");
