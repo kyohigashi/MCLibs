@@ -153,7 +153,7 @@ define(function(require) {
 					appearingAnimation.start();
 				}
 				World.controller.modelDidLoad();
-				// World.clearModel(World.oldTarget);
+				World.clearModel(World.oldTarget);
 			}
 		},
 		createAppearingAnimation: function(model, scale) {
