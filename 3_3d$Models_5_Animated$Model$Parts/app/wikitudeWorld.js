@@ -8,7 +8,7 @@ define(function(require) {
 		targetModels: [],
 		animations: [],
 		targets: [],
-		oldTarget: {},
+	    oldTarget: {},
 
 		init: function() {
 			this.createOverlays();
@@ -50,12 +50,12 @@ define(function(require) {
 				this.oldTarget = this.targets.pop();
 				this.oldTarget.tracker.enabled = false;
 				this.oldTarget.trackable.enabled = false;
-				this.oldTarget.trackable.drawables.cam = [];
+				this.oldTarget.trackable.drawables.cam  = [];
 			}
 
 			var modelAndAnimations = this.loadModel(name, animationNames);
 			var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
-				onLoaded: this.loadingStep // World.clearModel(modelAndAnimations);
+				onLoaded: this.loadingStep// World.clearModel(modelAndAnimations);
 			});
 			var _trackable = new AR.Trackable2DObject(_tracker, "Small-ICC-firework-version-chop", {
 				drawables: {
@@ -64,19 +64,16 @@ define(function(require) {
 				onEnterFieldOfVision: this.appear,
 				onExitFieldOfVision: this.disappear
 			});
-
-			var target = {
+			this.targets.push({
 				tracker: _tracker,
 				trackable: _trackable,
 				model: modelAndAnimations.model,
 				animations: modelAndAnimations.animations
-			};
+			});
 
-			if (this.targets.length == 0) {
-				this.oldTarget = target;
-			}
-			this.targets.push(target);
 			this.modelName = name;
+
+
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
