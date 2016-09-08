@@ -75,8 +75,10 @@ define(function(require) {
 				alert('targets' + this.targets);
 				this.oldTarget = this.targets.shift();
 				this.oldTarget.tracker.enabled = false;
-				this.oldTarget.trackable.enabled = false;
-				alert('old target' + this.oldTarget.model.uri);
+				setTimeout(function() {
+					alert('old target' + World.oldTarget.model.uri);
+					World.clearModel(World.oldTarget);
+				}, 1000);
 				// this.oldTarget.trackable.drawables.cam = [];
 			}
 		},
