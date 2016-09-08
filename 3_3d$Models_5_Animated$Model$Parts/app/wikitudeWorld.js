@@ -57,32 +57,33 @@ define(function(require) {
 				// }
 				this.removeTargets.push(oldTarget);
 			}
-			var modelAndAnimations = this.loadModel(name, animationNames);
-			var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
-				onLoaded: this.loadingStep // World.clearModel(modelAndAnimations);
-			});
-			var _trackable = new AR.Trackable2DObject(_tracker, "Small-ICC-firework-version-chop", {
-				drawables: {
-					cam: [modelAndAnimations.model]
-				},
-				onEnterFieldOfVision: function() {
-					World.trackableVisible = true;
-					World.startModelAnimation();
-				},
-				onExitFieldOfVision: function() {
-					World.trackableVisible = false;
+			setTimeout(function() {
+				var modelAndAnimations = World.loadModel(name, animationNames);
+				var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
+					onLoaded: World.loadingStep // World.clearModel(modelAndAnimations);
+				});
+				var _trackable = new AR.Trackable2DObject(_tracker, "Small-ICC-firework-version-chop", {
+					drawables: {
+						cam: [modelAndAnimations.model]
+					},
+					onEnterFieldOfVision: function() {
+						World.trackableVisible = true;
+						World.startModelAnimation();
+					},
+					onExitFieldOfVision: function() {
+						World.trackableVisible = false;
 
-				}
-			});
-			this.targets.push({
-				tracker: _tracker,
-				trackable: _trackable,
-				model: modelAndAnimations.model,
-				animations: modelAndAnimations.animations
-			});
+					}
+				});
+				World.targets.push({
+					tracker: _tracker,
+					trackable: _trackable,
+					model: modelAndAnimations.model,
+					animations: modelAndAnimations.animations
+				});
 
-			this.modelName = name;
-
+				World.modelName = name;
+			},1000);
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
