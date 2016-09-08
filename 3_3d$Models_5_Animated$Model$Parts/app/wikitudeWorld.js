@@ -56,7 +56,6 @@ define(function(require) {
 					oldTarget.animations[i].stop();
 				}
 				this.removeTargets.push(oldTarget);
-				oldTarget.model.destroy();
 			}
 			setTimeout(function() {
 				var modelAndAnimations = World.loadModel(name, animationNames);
@@ -108,11 +107,7 @@ define(function(require) {
 				}
 			});
 			this.animations = [];
-			var i;
-			for (i in animationNames) {
-				this.animations.push(new AR.ModelAnimation(targetModelDay, "group_animation"));
-			}
-
+			this.animations.push(new AR.ModelAnimation(targetModelDay, "group_animation"));
 			this.targetModels.push(targetModelDay);
 			return {
 				model: targetModelDay,
