@@ -24,12 +24,13 @@ define(function(require) {
 			target.trackable.destroy();
 		},
 		loadDayModeAndTracker: function() {
+			
 			var _modelAndAnimations = this.loadSkyLineModel();
 			var t = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep
 			});
 
-			var _trackable = new AR.Trackable2DObject(t, "*", {
+			var _trackable = new AR.Trackable2DObject(t, "skyline-tracker_edit", {
 				drawables: {
 					cam: World.targetModels
 				},
@@ -82,7 +83,7 @@ define(function(require) {
 				});
 
 				World.modelName = name;
-			},2000);
+			}, 2000);
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
@@ -105,13 +106,12 @@ define(function(require) {
 					tilt: -90
 				}
 			});
-			if (typeof animationNames != "undefined") {
-				this.animations = [];
-				var i;
-				for (i in animationNames) {
-					this.animations.push(new AR.ModelAnimation(targetModelDay, "group_animation"));
-				}
+			this.animations = [];
+			var i;
+			for (i in animationNames) {
+				this.animations.push(new AR.ModelAnimation(targetModelDay, "group_animation"));
 			}
+
 			this.targetModels.push(targetModelDay);
 			return {
 				model: targetModelDay,
