@@ -8,7 +8,7 @@ define(function(require) {
 		targetModels: [],
 		animations: [],
 		targets: [],
-	    oldTarget: {},
+	    oldTarget: null,
 
 		init: function() {
 			this.createOverlays();
@@ -64,16 +64,20 @@ define(function(require) {
 				onEnterFieldOfVision: this.appear,
 				onExitFieldOfVision: this.disappear
 			});
-			this.targets.push({
+
+			var target = {
 				tracker: _tracker,
 				trackable: _trackable,
 				model: modelAndAnimations.model,
 				animations: modelAndAnimations.animations
-			});
+			};
 
+			this.targets.push(target);
+
+			if (this.oldTarget === null) {
+				this.oldTarget = target;
+			}
 			this.modelName = name;
-
-
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
