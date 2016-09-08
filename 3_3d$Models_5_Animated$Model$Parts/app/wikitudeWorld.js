@@ -8,7 +8,7 @@ define(function(require) {
 		targetModels: [],
 		animations: [],
 		targets: [],
-		oldTarget: {},
+		removeTargets: [],
 
 		init: function() {
 			this.createOverlays();
@@ -72,12 +72,15 @@ define(function(require) {
 
 			this.modelName = name;
 			if (this.targets.length > 1) {
-				alert('targets' + this.targets);
-				this.oldTarget = this.targets.shift();
-				this.oldTarget.trackable.drawables.removeCamDrawable(0);
-				this.oldTarget.tracker.enabled = false;
-				// this.oldTarget.trackable.enabled = false;
-				// this.oldTarget.trackable.drawables.cam = [];
+				var oldTarget = this.targets.shift();
+				oldTarget.trackable.drawables.removeCamDrawable(0);
+				oldTarget.tracker.enabled = false;
+				var i;
+				for (i in oldTarget.animations) {
+					oldTarget.animations[i].stop();
+					oldTarget.animations[i].destroy();
+				}
+				this.removeTargets.push(oldTarget);
 			}
 		},
 		loadSkyLineModel: function() {
