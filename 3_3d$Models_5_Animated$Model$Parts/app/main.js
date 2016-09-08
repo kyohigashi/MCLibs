@@ -1,5 +1,6 @@
 define(function(require) {
     var $ = require('jquery');
+
     function mainBase() {}
     mainBase.prototype = {
         init: function() {
@@ -76,7 +77,8 @@ define(function(require) {
             $('#loadingMessage').empty().append(e);
             // Remove Scan target message after 10 sec.
             setTimeout(function() {
-               $('#loadingMessage').empty();
+                var jquery = require('jquery');
+                jquery('#loadingMessage').empty();
             }, 10000);
         }
     };
