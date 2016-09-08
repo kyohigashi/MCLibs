@@ -70,6 +70,7 @@ define(function(require) {
 				this.oldTarget.tracker.enabled = false;
 				this.oldTarget.trackable.enabled = false;
 				this.oldTarget.trackable.drawables.cam  = [];
+				this.clearModel(this.oldTarget);
 			}
 		},
 		loadSkyLineModel: function() {
