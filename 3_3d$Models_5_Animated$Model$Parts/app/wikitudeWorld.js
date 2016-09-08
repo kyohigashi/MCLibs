@@ -46,12 +46,7 @@ define(function(require) {
 
 		},
 		loadModeAndTracker: function(name, animationNames) {
-			if (this.targets.length > 0) {
-				this.oldTarget = this.targets.pop();
-				this.oldTarget.tracker.enabled = false;
-				this.oldTarget.trackable.enabled = false;
-				this.oldTarget.trackable.drawables.cam  = [];
-			}
+
 
 			var modelAndAnimations = this.loadModel(name, animationNames);
 			var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
@@ -72,8 +67,12 @@ define(function(require) {
 			});
 
 			this.modelName = name;
-
-
+			this.oldTarget = this.targets[0];
+			if (this.targets.length > 1) {
+				this.oldTarget.tracker.enabled = false;
+				this.oldTarget.trackable.enabled = false;
+				this.oldTarget.trackable.drawables.cam  = [];
+			}
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
