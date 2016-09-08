@@ -75,8 +75,8 @@ define(function(require) {
 				this.oldTarget = this.targets.shift();
 				this.oldTarget.tracker.enabled = false;
 				this.oldTarget.trackable.enabled = false;
+				alert('old target' + this.oldTarget.model.uri);
 				this.oldTarget.trackable.drawables.cam = [];
-				this.clearModel(this.oldTarget);
 			}
 		},
 		loadSkyLineModel: function() {
