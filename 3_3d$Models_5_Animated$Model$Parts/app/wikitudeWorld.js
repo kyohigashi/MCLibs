@@ -50,11 +50,11 @@ define(function(require) {
 				var oldTarget = this.targets.shift();
 				oldTarget.trackable.drawables.removeCamDrawable(0);
 				oldTarget.tracker.enabled = false;
-				var i;
-				for (i in oldTarget.animations) {
-					oldTarget.animations[i].stop();
-					oldTarget.animations[i].destroy();
-				}
+				// var i;
+				// for (i in oldTarget.animations) {
+				// 	oldTarget.animations[i].stop();
+				// 	oldTarget.animations[i].destroy();
+				// }
 				this.removeTargets.push(oldTarget);
 			}
 			var modelAndAnimations = this.loadModel(name, animationNames);
