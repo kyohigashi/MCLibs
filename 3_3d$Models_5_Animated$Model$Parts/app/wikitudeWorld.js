@@ -73,11 +73,11 @@ define(function(require) {
 			this.modelName = name;
 			if (this.targets.length > 1) {
 				alert('targets' + this.targets);
-				this.oldTarget = this.targets.shift();
-				this.oldTarget.tracker.enabled = false;
-				this.oldTarget.trackable.enabled = false;
+				// this.oldTarget = this.targets.shift();
+				// this.oldTarget.tracker.enabled = false;
+				// this.oldTarget.trackable.enabled = false;
 				alert('old target' + this.oldTarget.model.uri);
-				this.oldTarget.trackable.drawables.cam = [];
+				// this.oldTarget.trackable.drawables.cam = [];
 			}
 		},
 		loadSkyLineModel: function() {
