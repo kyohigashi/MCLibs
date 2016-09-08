@@ -66,11 +66,11 @@ define(function(require) {
 
 			this.modelName = name;
 			this.oldTarget = this.targets[0];
-			// if (this.targets.length > 1) {
-			// 	this.oldTarget.tracker.enabled = false;
-			// 	this.oldTarget.trackable.enabled = false;
-			// 	this.oldTarget.trackable.drawables.cam  = [];
-			// }
+			if (this.targets.length > 1) {
+				this.oldTarget.tracker.enabled = false;
+				this.oldTarget.trackable.enabled = false;
+				this.oldTarget.trackable.drawables.cam  = [];
+			}
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
@@ -161,7 +161,7 @@ define(function(require) {
 					appearingAnimation.start();
 				}
 				World.controller.modelDidLoad();
-				World.clearModel(World.oldTarget);
+				// World.clearModel(World.oldTarget);
 			}
 		},
 		createAppearingAnimation: function(model, scale) {
