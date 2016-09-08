@@ -42,7 +42,7 @@ define(function(require) {
 				tracker: t,
 				trackable: _trackable,
 				model: _modelAndAnimations.model,
-				animations: modelAndAnimations.animations
+				animations: _modelAndAnimations.animations
 			});
 
 		},
@@ -52,9 +52,9 @@ define(function(require) {
 				oldTarget.trackable.drawables.removeCamDrawable(0);
 				oldTarget.tracker.enabled = false;
 				var i;
-				for (i in oldTarget.animations) {
-					oldTarget.animations[i].stop();
-				}
+				// for (i in oldTarget.animations) {
+				// 	oldTarget.animations[i].stop();
+				// }
 				this.removeTargets.push(oldTarget);
 			}
 			setTimeout(function() {
