@@ -76,10 +76,10 @@ define(function(require) {
             $('#modelbutton2').empty();
             $('#loadingMessage').empty().append(e);
             // Remove Scan target message after 10 sec.
-            setTimeout(function() {
-                var jquery = require('jquery');
-                jquery('#loadingMessage').empty();
-            }, 10000);
+            // setTimeout(function() {
+            //     var jquery = require('jquery');
+            //     jquery('#loadingMessage').empty();
+            // }, 10000);
         }
     };
     var World = require('app/wikitudeWorld');
