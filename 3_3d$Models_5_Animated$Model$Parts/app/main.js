@@ -21,7 +21,7 @@ define(function(require) {
                             'I love HK: <input id="input1" type="checkbox" name="FirstName" value="assets/ICC_ilovehk_0901.wt3">',
                             '</div>',
                             '<div class="vex-custom-field-wrapper">',
-                            'ICC happy birthday: <input type="checkbox" name="FirstName" value="assets/ICC_happybirthday_0901.wt3">',
+                            'ICC happy birthday: <input type="checkbox" name="FirstName" value="assets/ICC_happybirthday_0902_V3_NIGHT.wt3">',
                             '</div>'
                         ].join(''),
                         callback: function(data) {
@@ -29,8 +29,8 @@ define(function(require) {
                                 return console.log('Cancelled')
                             } else {
                                 try {
-                                    if (selector == "assets/ICC_happybirthday_0901.wt3") {
-                                        World.loadModeAndTracker("assets/ICC_happybirthday_0901.wt3", ["Night_set_animation", "cloud_grp_animaton", "happy_birthday5_animation"]);
+                                    if (selector == "assets/ICC_happybirthday_0902_V3_NIGHT.wt3") {
+                                        World.loadModeAndTracker("assets/ICC_happybirthday_0902_V3_NIGHT.wt3", ["Night_set_animation", "cloud_grp_animaton", "happy_birthday5_animation"]);
                                     } else {
                                         World.loadModeAndTracker("assets/ICC_ilovehk_0901.wt3", ["I_love_HK4_animation"]);
                                     }
@@ -53,7 +53,7 @@ define(function(require) {
                     World.loadDayModeAndTracker();
                 });
                 $("#loadmodelButtonSmallBuild").click(function() {
-                    World.loadModeAndTracker("assets/ICC_happybirthday_0901.wt3", ["Night_set_animation", "cloud_grp_animaton", "happy_birthday5_animation"]);
+                    World.loadModeAndTracker("assets/ICC_happybirthday_0902_V3_NIGHT.wt3", ["Night_set_animation", "cloud_grp_animaton", "happy_birthday5_animation"]);
                 });
 
             });
