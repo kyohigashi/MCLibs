@@ -47,7 +47,7 @@ define(function(require) {
 		},
 		loadModeAndTracker: function(name, animationNames) {
 			var modelAndAnimations = this.loadModel(name, animationNames);
-			var _tracker = new AR.Tracker("assets/tracker.wtc", {
+			var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep // World.clearModel(modelAndAnimations);
 			});
 			var _trackable = new AR.Trackable2DObject(_tracker, "Small-ICC-firework-version-chop", {
@@ -74,12 +74,9 @@ define(function(require) {
 			if (this.targets.length > 1) {
 				alert('targets' + this.targets);
 				this.oldTarget = this.targets.shift();
+				this.oldTarget.trackable.drawables.removeCamDrawable(0);
 				this.oldTarget.tracker.enabled = false;
-				this.oldTarget.trackable.enabled = false;
-				setTimeout(function() {
-					alert('old target' + World.oldTarget.model.uri);
-					World.clearModel(World.oldTarget);
-				}, 1000);
+				// this.oldTarget.trackable.enabled = false;
 				// this.oldTarget.trackable.drawables.cam = [];
 			}
 		},
