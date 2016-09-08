@@ -56,6 +56,7 @@ define(function(require) {
 					oldTarget.animations[i].stop();
 				}
 				this.removeTargets.push(oldTarget);
+				oldTarget.model.destroy();
 			}
 			setTimeout(function() {
 				var modelAndAnimations = World.loadModel(name, animationNames);
