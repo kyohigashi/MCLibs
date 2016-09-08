@@ -24,20 +24,24 @@ define(function(require) {
 			target.trackable.destroy();
 		},
 		loadDayModeAndTracker: function() {
-			this.loadSkyLineModel();
+			var _modelAndAnimations = this.loadSkyLineModel();
 			var t = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep
 			});
-			this.targets.push({
-				tracker: t
-			});
 
-			var trackable = new AR.Trackable2DObject(t, "*", {
+			var _trackable = new AR.Trackable2DObject(t, "*", {
 				drawables: {
 					cam: World.targetModels
 				},
 				onEnterFieldOfVision: this.appear,
 				onExitFieldOfVision: this.disappear
+			});
+
+			this.targets.push({
+				tracker: t,
+				trackable: _trackable,
+				model: _modelAndAnimations.model,
+				animations: _modelAndAnimations.animations
 			});
 
 		},
@@ -92,11 +96,18 @@ define(function(require) {
 					tilt: -90
 				}
 			});
-			this.animations.push(new AR.ModelAnimation(targetModelDay, "group_animation"));
-			if (this.targetModels.length > 0) {
-				this.targetModels.pop();
+			if (typeof animationNames != "undefined") {
+				this.animations = [];
+				var i;
+				for (i in animationNames) {
+					this.animations.push(new AR.ModelAnimation(targetModelDay, "group_animation"));
+				}
 			}
 			this.targetModels.push(targetModelDay);
+			return {
+				model: targetModelDay,
+				animations: this.animations
+			};
 		},
 		loadModel: function(file, animationNames) {
 			var targetModelNight = new AR.Model(file, {
