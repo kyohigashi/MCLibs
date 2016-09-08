@@ -8,7 +8,7 @@ define(function(require) {
 		targetModels: [],
 		animations: [],
 		targets: [],
-	    oldTarget: null,
+		oldTarget: {},
 
 		init: function() {
 			this.createOverlays();
@@ -41,7 +41,7 @@ define(function(require) {
 				tracker: t,
 				trackable: _trackable,
 				model: _modelAndAnimations.model,
-				animations: _modelAndAnimations.animations
+				animations: modelAndAnimations.animations
 			});
 
 		},
@@ -50,12 +50,12 @@ define(function(require) {
 				this.oldTarget = this.targets.pop();
 				this.oldTarget.tracker.enabled = false;
 				this.oldTarget.trackable.enabled = false;
-				this.oldTarget.trackable.drawables.cam  = [];
+				this.oldTarget.trackable.drawables.cam = [];
 			}
 
 			var modelAndAnimations = this.loadModel(name, animationNames);
 			var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
-				onLoaded: this.loadingStep// World.clearModel(modelAndAnimations);
+				onLoaded: this.loadingStep // World.clearModel(modelAndAnimations);
 			});
 			var _trackable = new AR.Trackable2DObject(_tracker, "Small-ICC-firework-version-chop", {
 				drawables: {
@@ -72,11 +72,10 @@ define(function(require) {
 				animations: modelAndAnimations.animations
 			};
 
-			this.targets.push(target);
-
-			if (this.oldTarget === null) {
+			if (this.targets.length == 0) {
 				this.oldTarget = target;
 			}
+			this.targets.push(target);
 			this.modelName = name;
 		},
 		loadSkyLineModel: function() {
