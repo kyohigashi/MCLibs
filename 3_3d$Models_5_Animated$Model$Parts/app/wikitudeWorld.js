@@ -8,7 +8,7 @@ define(function(require) {
 		targetModels: [],
 		animations: [],
 		targets: [],
-	    oldTarget: {},
+		oldTarget: {},
 
 		init: function() {
 			this.createOverlays();
@@ -48,14 +48,20 @@ define(function(require) {
 		loadModeAndTracker: function(name, animationNames) {
 			var modelAndAnimations = this.loadModel(name, animationNames);
 			var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
-				onLoaded: this.loadingStep// World.clearModel(modelAndAnimations);
+				onLoaded: this.loadingStep // World.clearModel(modelAndAnimations);
 			});
 			var _trackable = new AR.Trackable2DObject(_tracker, "Small-ICC-firework-version-chop", {
 				drawables: {
 					cam: [modelAndAnimations.model]
 				},
-				onEnterFieldOfVision: this.appear,
-				onExitFieldOfVision: this.disappear
+				onEnterFieldOfVision: function() {
+					World.trackableVisible = true;
+					World.startModelAnimation();
+				},
+				onExitFieldOfVision: function() {
+					World.trackableVisible = false;
+
+				}
 			});
 			this.targets.push({
 				tracker: _tracker,
@@ -70,7 +76,7 @@ define(function(require) {
 				this.oldTarget = this.targets.shift();
 				this.oldTarget.tracker.enabled = false;
 				this.oldTarget.trackable.enabled = false;
-				this.oldTarget.trackable.drawables.cam  = [];
+				this.oldTarget.trackable.drawables.cam = [];
 				this.clearModel(this.oldTarget);
 			}
 		},
