@@ -2,6 +2,7 @@ define(function(require) {
 	var $ = require('jquery');
 	var World = {
 		controller: {},
+		isLoadingModel: false,
 		modelName: "",
 		loaded: false,
 		trackableVisible: false,
@@ -37,6 +38,10 @@ define(function(require) {
 
 		},
 		loadModeAndTracker: function(name, animationNames) {
+			if (this.isLoadingModel) {
+				return;
+			}
+			this.isLoadingModel = true;
 			var oldTarget = null;
 			if (this.targets.length > 0) {
 				try {
@@ -91,7 +96,8 @@ define(function(require) {
 				});
 
 				World.modelName = name;
-			}, 3000);
+				World.isLoadingModel = false;
+			}, 6000);
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
