@@ -13,16 +13,6 @@ define(function(require) {
 		init: function() {
 			this.createOverlays();
 		},
-		clearModel: function(target) {
-			var i;
-			for (i in target.animations) {
-				target.animations[i].stop();
-				target.animations[i].destroy();
-			}
-			target.model.destroy();
-			target.tracker.destroy();
-			target.trackable.destroy();
-		},
 		loadDayModeAndTracker: function() {
 			
 			var _modelAndAnimations = this.loadSkyLineModel();
@@ -53,10 +43,7 @@ define(function(require) {
 				oldTarget.tracker.enabled = false;
 				oldTarget.model.destroy();
 				oldTarget.tracker.destroy();
-				var i;
-				// for (i in oldTarget.animations) {
-				// 	oldTarget.animations[i].stop();
-				// }
+				oldTarget.trackable.destroy();
 				this.removeTargets.push(oldTarget);
 			}
 			setTimeout(function() {
@@ -85,7 +72,7 @@ define(function(require) {
 				});
 
 				World.modelName = name;
-			}, 6000);
+			}, 3000);
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
@@ -157,7 +144,6 @@ define(function(require) {
 				opacity: 1.0
 			});
 		},
-
 		loadingStep: function() {
 			if (World.targets.length > 0 && World.targets[0].model.isLoaded() && World.targets[0].tracker.isLoaded()) {
 				// if (!World._tracker) {
