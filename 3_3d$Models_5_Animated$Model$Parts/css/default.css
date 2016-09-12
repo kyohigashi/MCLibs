@@ -1,0 +1,33 @@
+.info {
+	font-size: large;
+	position: static;
+	width: 100%;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	background-color: #BBBBBB;
+	text-align: center;
+	top: 0;
+	left: 0;
+	opacity: 0.7;
+	display: table;
+}
+.buttonSelection {
+	padding-top: 5px;
+	position: static;
+	left: 30%;	
+}
+.button {
+	width: 40%;
+	text-align: center;
+	padding: 20px;
+}
+.hs-brand-button {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    text-shadow: none !important;
+    background-color: #ff8000;
+    border: none;
+    padding: 0.84em 1.47em;
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
