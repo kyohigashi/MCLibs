@@ -50,7 +50,10 @@ define(function(require) {
 			if (this.targets.length > 0) {
 				var oldTarget = this.targets.shift();
 				oldTarget.trackable.drawables.removeCamDrawable(0);
+				oldTarget.trackable.stopExtendedTracking();
 				oldTarget.tracker.enabled = false;
+				oldTarget.model.destroy();
+				oldTarget.tracker.destroy();
 				var i;
 				// for (i in oldTarget.animations) {
 				// 	oldTarget.animations[i].stop();
