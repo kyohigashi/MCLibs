@@ -43,7 +43,7 @@ define(function(require) {
 				oldTarget.tracker.enabled = false;
 				oldTarget.model.destroy();
 				oldTarget.tracker.destroy();
-				oldTarget.trackable.destroy();
+				// oldTarget.trackable.destroy();
 				this.removeTargets.push(oldTarget);
 			}
 			setTimeout(function() {
