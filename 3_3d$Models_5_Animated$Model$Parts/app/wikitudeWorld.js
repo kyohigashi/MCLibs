@@ -83,7 +83,7 @@ define(function(require) {
 				});
 
 				World.modelName = name;
-			}, 2000);
+			}, 6000);
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
