@@ -43,34 +43,34 @@ define(function(require) {
 			}
 			this.isLoadingModel = true;
 			var oldTarget = null;
-			if (this.targets.length > 0) {
-				try {
-					oldTarget = this.targets.shift();
-					oldTarget.trackable.drawables.removeCamDrawable(0);
-					oldTarget.tracker.enabled = false;
-					oldTarget.model.destroy();
-					var i;
-					for (i in oldTarget.animations) {
-						oldTarget.animations[i].stop();
-						oldTarget.animations[i].destroy();
-					}
-					oldTarget.tracker.destroy();
-					// oldTarget.trackable.destroy();
-					this.removeTargets.push(oldTarget);
-				} catch (err) {
-					console.log(err);
-				}
+			// if (this.targets.length > 0) {
+			// 	try {
+			// 		oldTarget = this.targets.shift();
+			// 		oldTarget.trackable.drawables.removeCamDrawable(0);
+			// 		oldTarget.tracker.enabled = false;
+			// 		oldTarget.model.destroy();
+			// 		var i;
+			// 		for (i in oldTarget.animations) {
+			// 			oldTarget.animations[i].stop();
+			// 			oldTarget.animations[i].destroy();
+			// 		}
+			// 		oldTarget.tracker.destroy();
+			// 		// oldTarget.trackable.destroy();
+			// 		this.removeTargets.push(oldTarget);
+			// 	} catch (err) {
+			// 		console.log(err);
+			// 	}
 
-			}
+			// }
 			World.controller.modelOnLoading();
 			setTimeout(function() {
-				try {
-					if (oldTarget !== null) {
-						oldTarget.trackable.destroy();
-					}
-				} catch (err) {
-					console.log(err);
-				}
+				// try {
+				// 	if (oldTarget !== null) {
+				// 		oldTarget.trackable.destroy();
+				// 	}
+				// } catch (err) {
+				// 	console.log(err);
+				// }
 
 				var modelAndAnimations = World.loadModel(name, animationNames);
 				var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
