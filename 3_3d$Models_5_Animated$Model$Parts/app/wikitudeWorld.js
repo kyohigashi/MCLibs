@@ -37,6 +37,12 @@ define(function(require) {
 			});
 
 		},
+		loadModelsAndTrackers: function(targets) {
+			var i;
+			for (i in animationNames) {
+				this.animations.push(new AR.ModelAnimation(targetModelNight, animationNames[i]));
+			}
+		},
 		loadModeAndTracker: function(name, animationNames, targetName) {
 			if (World.isLoadingModel) {
 				return;
@@ -80,7 +86,7 @@ define(function(require) {
 					drawables: {
 						cam: [modelAndAnimations.model]
 					},
-					onEnterFieldOfVision: function() {
+					onEnterFieldOfVision: function(targetName) {
 						World.trackableVisible = true;
 						World.startModelAnimation();
 					},
