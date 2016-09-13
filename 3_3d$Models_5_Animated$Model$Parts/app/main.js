@@ -84,8 +84,6 @@ define(function(require) {
                     e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
                         "<div" + cssDivRight + "><img src='assets/skyline.jpg'></img></div>";
                 }
-                $('#modelbutton').empty();
-                $('#modelbutton2').empty();
                 $('#loadingMessage').empty().append(e);
 
             }
@@ -96,6 +94,8 @@ define(function(require) {
             // }, 10000);
         },
         modelOnLoading: function() {
+            $('#modelbutton').empty();
+            $('#modelbutton2').empty();
             $("body").append(this.loadingDiv);
         }
     };
