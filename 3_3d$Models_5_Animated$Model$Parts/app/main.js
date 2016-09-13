@@ -3,6 +3,7 @@ define(function(require) {
 
     function mainBase() {}
     mainBase.prototype = {
+        isFinishLoading: false,
         loadingDiv: "<div id='loadingbox' class='loader'></div>",
         init: function() {
             var selector = "";
@@ -60,31 +61,34 @@ define(function(require) {
                 $("#loadmodelButtonSmallBuild").click(function() {
                     World.loadModeAndTracker("assets/ICC_happybirthday_0912_DAY.wt3", ["Day_set_animation", "happy_birthday5_animation"], "Small-ICC-chop");
                     setTimeout(function() {
-                        World.loadModeAndTracker("assets/ICC_happybirthday_0912_DAY.wt3", ["Night_set_animation", "happy_birthday5_animation"], "Small-ICC-firework-version-chop");
-                    },3000);
+                        World.loadModeAndTracker("assets/ICC_happybirthday_0912_NIGHT.wt3", ["Night_set_animation", "happy_birthday5_animation"], "Small-ICC-firework-version-chop");
+                        World.controller.isFinishLoading = true;
+                    }, 3000);
 
                 });
 
             });
         },
         modelDidLoad: function() {
-            $( ".loader" ).remove();
-            var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
-            var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
-            var e = "";
+            $(".loader").remove();
+            if (this.isFinishLoading) {
+                var cssDivLeft = " style='display: table-cell;vertical-align: middle; text-align: right; width: 50%; padding-right: 15px;'";
+                var cssDivRight = " style='display: table-cell;vertical-align: middle; text-align: left;'";
+                var e = "";
 
-            if (World.modelName != "" && false) {
-                e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
-                    "<div" + cssDivRight + "><img src='assets/small-icc2.jpg'></img></div>";
-                $('#selectBuidling').empty().append("<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>");
-            } else {
-                e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
-                    "<div" + cssDivRight + "><img src='assets/skyline.jpg'></img></div>";
+                if (World.modelName != "") {
+                    e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
+                        "<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img><img src='assets/small-icc2.jpg'></img></div>";
+                    // $('#selectBuidling').empty().append("<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>");
+                } else {
+                    e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
+                        "<div" + cssDivRight + "><img src='assets/skyline.jpg'></img></div>";
+                }
+                $('#modelbutton').empty();
+                $('#modelbutton2').empty();
+                $('#loadingMessage').empty().append(e);
+
             }
-            $('#modelbutton').empty();
-            $('#modelbutton2').empty();
-            $('#loadingMessage').empty().append(e);
-
             // Remove Scan target message after 10 sec.
             // setTimeout(function() {
             //     var jquery = require('jquery');
