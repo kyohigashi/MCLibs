@@ -37,8 +37,8 @@ define(function(require) {
 			});
 
 		},
-		loadModeAndTracker: function(name, animationNames) {
-			if (this.isLoadingModel) {
+		loadModeAndTracker: function(name, animationNames, targetName) {
+			if (World.isLoadingModel) {
 				return;
 			}
 			this.isLoadingModel = true;
@@ -62,6 +62,7 @@ define(function(require) {
 				}
 
 			}
+			World.controller.modelOnLoading();
 			setTimeout(function() {
 				try {
 					if (oldTarget !== null) {
@@ -75,7 +76,7 @@ define(function(require) {
 				var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
 					onLoaded: World.loadingStep // World.clearModel(modelAndAnimations);
 				});
-				var _trackable = new AR.Trackable2DObject(_tracker, "Small-ICC-firework-version-chop", {
+				var _trackable = new AR.Trackable2DObject(_tracker, targetName, {
 					drawables: {
 						cam: [modelAndAnimations.model]
 					},
@@ -97,7 +98,7 @@ define(function(require) {
 
 				World.modelName = name;
 				World.isLoadingModel = false;
-			}, 6000);
+			}, 2000);
 		},
 		loadSkyLineModel: function() {
 			var targetModelDay = new AR.Model("assets/skydive_0906_1K.wt3", {
