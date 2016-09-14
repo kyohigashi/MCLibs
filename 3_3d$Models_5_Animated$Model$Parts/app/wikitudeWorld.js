@@ -271,7 +271,9 @@ define(function(require) {
 				for (i in target.animations) {
 					try {
 						target.animations[i].start(200);
-					} catch (err) {}
+					} catch (err) {
+						console.log(err);
+					}
 				}
 			}
 		},
@@ -282,7 +284,9 @@ define(function(require) {
 				for (i in World.animations) {
 					try {
 						World.animations[i].start(200);
-					} catch (err) {}
+					} catch (err) {
+						console.log(err);
+					}
 				}
 			}
 		},
