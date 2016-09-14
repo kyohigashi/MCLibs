@@ -60,11 +60,10 @@ define(function(require) {
 						for (i in World.targets) {
 							var target = World.targets[i];
 							if (target.targetName === targetName) {
-								// target.trackable.drawables.addCamDrawable(target.model, 0);
+							    target.trackable.drawables.addCamDrawable(target.model, 0);
 								setTimeout(function() {
 									World.startModelAnimationWithTarget(target);
 								}, 500);
-
 							}
 						}
 					} catch (err) {
