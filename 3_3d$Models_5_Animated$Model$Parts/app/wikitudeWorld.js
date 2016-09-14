@@ -298,6 +298,7 @@ define(function(require) {
 			try {
 				var i;
 				for (i in target.animationNames) {
+					alert(target.animationNames[i]);
 					target.animations.push(new AR.ModelAnimation(target.model, target.animationNames[i]));
 				}
 			} catch (err) {
