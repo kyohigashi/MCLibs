@@ -42,6 +42,10 @@ define(function(require) {
 			World.isLoadingModel = false;
 		},
 		loadModelsAndTrackers: function(targets) {
+			if (World.isLoadingModel) {
+				return;
+			}
+			this.isLoadingModel = true;
 			var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: World.loadingStep // World.clearModel(modelAndAnimations);
 			});
@@ -55,7 +59,8 @@ define(function(require) {
 						for (i in World.targets) {
 							var target = World.targets[i];
 							if (target.targetName === targetName) {
-								oldTarget.trackable.drawables.removeCamDrawable(0);
+								target.trackable.drawables.removeCamDrawable(0);
+								target.trackable.drawables.addCamDrawable(target.model, 0);
 								World.startModelAnimationWithTarget(target);
 							}
 						}
@@ -63,7 +68,7 @@ define(function(require) {
 						console.log(err);
 					}
 				},
-				onExitFieldOfVision: function(targetName) {
+				onExitFieldOfVision: function() {
 					try {
 						World.trackableVisible = false;
 					} catch (err) {
@@ -84,6 +89,7 @@ define(function(require) {
 					targetName: target.targetName
 				});
 			}
+			World.isLoadingModel = false;
 		},
 		loadModeAndTracker: function(name, animationNames, targetName) {
 			if (World.isLoadingModel) {

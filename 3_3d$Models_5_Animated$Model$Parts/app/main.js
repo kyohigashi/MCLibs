@@ -57,6 +57,7 @@ define(function(require) {
                 });
                 $("#loadmodelButtonSkyDrive").click(function() {
                     World.loadDayModeAndTracker();
+                    World.controller.isFinishLoading = true;
                 });
                 $("#loadmodelButtonSmallBuild").click(function() {
                       World.loadModeAndTracker("assets/ICC_happybirthday_0912_NIGHT.wt3", ["Night_set_animation", "happy_birthday5_animation"], "Small-ICC-firework-version-chop");
