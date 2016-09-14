@@ -69,8 +69,8 @@ define(function(require) {
                         animationNames: ["Day_set_animation", "happy_birthday5_animation"],
                         targetName: "Small-ICC-chop"
                     }];
-                    // World.loadModelsAndTrackers(targets);
-                    World.loadModeAndTracker("assets/ICC_happybirthday_0912_NIGHT.wt3", ["Night_set_animation", "happy_birthday5_animation"], "Small-ICC-firework-version-chop");
+                    World.loadModelsAndTrackers(targets);
+                    // World.loadModeAndTracker("assets/ICC_happybirthday_0912_NIGHT.wt3", ["Night_set_animation", "happy_birthday5_animation"], "Small-ICC-firework-version-chop");
                     // World.loadModeAndTracker("assets/ICC_happybirthday_0912_DAY.wt3", ["Day_set_animation", "happy_birthday5_animation"], "Small-ICC-firework-version-chop");
                     // setTimeout(function() {
                     // }, 3000);

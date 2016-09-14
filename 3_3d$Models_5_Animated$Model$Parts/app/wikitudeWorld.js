@@ -207,16 +207,16 @@ define(function(require) {
 				}
 			});
 			if (typeof animationNames != "undefined") {
-				// this.animations = [];
+				var animations = [];
 				var i;
 				for (i in animationNames) {
-					this.animations.push(new AR.ModelAnimation(targetModelNight, animationNames[i]));
+					animations.push(new AR.ModelAnimation(targetModelNight, animationNames[i]));
 				}
 			}
 			this.targetModels.push(targetModelNight);
 			return {
 				model: targetModelNight,
-				animations: this.animations
+				animations: animations
 			};
 		},
 		createOverlays: function() {
@@ -267,15 +267,14 @@ define(function(require) {
 		startModelAnimationWithTarget: function(target) {
 			// Resets the properties to the initial values.
 			if (World.loaded && typeof target.model != "undefined") {
-
-			}
-			var i;
-			for (i in target.animations) {
-				try {
-					console.log(target.animations[i]);
-					target.animations[i].start(200);
-				} catch (err) {
-					console.log(err);
+				var i;
+				for (i in target.animations) {
+					try {
+						console.log(target.animations[i]);
+						target.animations[i].start(200);
+					} catch (err) {
+						console.log(err);
+					}
 				}
 			}
 		},
