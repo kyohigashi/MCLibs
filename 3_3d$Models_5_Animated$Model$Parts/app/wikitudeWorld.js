@@ -189,17 +189,6 @@ define(function(require) {
 				animations: this.animations
 			};
 		},
-		loadAnimationWithTarget: function(target) {
-			// Resets the properties to the initial values.
-			if (World.loaded && typeof target.model != "undefined") {
-				var i;
-				for (i in target.animationNames) {
-					target.animations.push(new AR.ModelAnimation(target.model, target.animationNames[i]));
-				} catch (err) {
-					console.log(err);
-				}
-			}
-		},
 		loadModel: function(file, _animationNames, isloadAnimations) {
 			var targetModelNight = new AR.Model(file, {
 				onLoaded: this.loadingStep,
