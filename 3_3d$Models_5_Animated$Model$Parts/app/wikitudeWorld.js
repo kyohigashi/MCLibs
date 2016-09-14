@@ -52,7 +52,7 @@ define(function(require) {
 			});
 			var _trackable = new AR.Trackable2DObject(_tracker, "*", {
 				drawables: {
-					cam: [World.targets[i].model]
+					cam: [World.targets[0].model]
 				},
 				onEnterFieldOfVision: function(targetName) {
 					try {
