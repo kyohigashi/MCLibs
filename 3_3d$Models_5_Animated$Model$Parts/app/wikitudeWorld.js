@@ -234,10 +234,10 @@ define(function(require) {
 				// }
 				World.loaded = true;
 
-				if (World.trackableVisible) {
-					var appearingAnimation = World.createAppearingAnimation(World.targets[0].model, 0.045);
-					appearingAnimation.start();
-				}
+				// if (World.trackableVisible) {
+				// 	var appearingAnimation = World.createAppearingAnimation(World.targets[0].model, 0.045);
+				// 	appearingAnimation.start();
+				// }
 				World.controller.modelDidLoad();
 				// World.clearModel(World.oldTarget);
 			}
