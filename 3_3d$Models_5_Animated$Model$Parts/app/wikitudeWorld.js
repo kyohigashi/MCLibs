@@ -46,6 +46,7 @@ define(function(require) {
 				return;
 			}
 			this.isLoadingModel = true;
+			World.controller.modelOnLoading();
 			var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: World.loadingStep // World.clearModel(modelAndAnimations);
 			});
@@ -71,6 +72,7 @@ define(function(require) {
 				onExitFieldOfVision: function() {
 					try {
 						World.trackableVisible = false;
+						World.targets[0].trackable.drawables.removeCamDrawable(0);
 					} catch (err) {
 						console.log(err);
 					}
@@ -89,6 +91,7 @@ define(function(require) {
 					targetName: target.targetName
 				});
 			}
+			World.modelName = name;
 			World.isLoadingModel = false;
 		},
 		loadModeAndTracker: function(name, animationNames, targetName) {
