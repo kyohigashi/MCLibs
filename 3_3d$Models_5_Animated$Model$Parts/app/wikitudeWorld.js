@@ -206,14 +206,14 @@ define(function(require) {
 					roll: 0
 				}
 			});
+			var animations = [];
 			if (typeof animationNames != "undefined") {
-				var animations = [];
 				var i;
 				for (i in animationNames) {
+					alert(animationNames[i]);
 					animations.push(new AR.ModelAnimation(targetModelNight, animationNames[i]));
 				}
 			}
-			this.targetModels.push(targetModelNight);
 			return {
 				model: targetModelNight,
 				animations: animations
