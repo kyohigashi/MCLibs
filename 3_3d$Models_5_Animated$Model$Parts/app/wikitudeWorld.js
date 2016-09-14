@@ -295,13 +295,14 @@ define(function(require) {
 			}
 		},
 		loadAnimationWithTarget: function(target) {
-			var i;
-			for (i in target.animationNames) {
-				target.animations.push(new AR.ModelAnimation(target.model, target.animationNames[i]));
+			try {
+				var i;
+				for (i in target.animationNames) {
+					target.animations.push(new AR.ModelAnimation(target.model, target.animationNames[i]));
+				}
 			} catch (err) {
 				console.log(err);
 			}
-
 		},
 		disappear: function() {
 			World.trackableVisible = false;
