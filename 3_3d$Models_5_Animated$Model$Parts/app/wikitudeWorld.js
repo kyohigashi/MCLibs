@@ -62,6 +62,7 @@ define(function(require) {
 							if (target.targetName === targetName) {
 								target.trackable.drawables.addCamDrawable(target.model, 0);
 								setTimeout(function() {
+									World.loadAnimationWithTarget(target);
 									World.startModelAnimationWithTarget(target);
 								}, 500);
 							}
@@ -83,12 +84,13 @@ define(function(require) {
 			var target;
 			for (i in targets) {
 				target = targets[i];
-				var modelAndAnimations = World.loadModel(target.modelName, target.animationNames);
+				var modelAndAnimations = World.loadModel(target.modelName, target.animationNames, false);
 				World.targets.push({
 					tracker: _tracker,
 					trackable: _trackable,
 					model: modelAndAnimations.model,
 					animations: modelAndAnimations.animations,
+					animationNames: target.animationNames,
 					targetName: target.targetName
 				});
 			}
@@ -130,7 +132,7 @@ define(function(require) {
 					console.log(err);
 				}
 
-				var modelAndAnimations = World.loadModel(name, animationNames);
+				var modelAndAnimations = World.loadModel(name, animationNames, true);
 				var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
 					onLoaded: World.loadingStep // World.clearModel(modelAndAnimations);
 				});
@@ -187,7 +189,18 @@ define(function(require) {
 				animations: this.animations
 			};
 		},
-		loadModel: function(file, animationNames) {
+		loadAnimationWithTarget: function(target) {
+			// Resets the properties to the initial values.
+			if (World.loaded && typeof target.model != "undefined") {
+				var i;
+				for (i in target.animationNames) {
+					target.animations.push(new AR.ModelAnimation(target.model, target.animationNames[i]));
+				} catch (err) {
+					console.log(err);
+				}
+			}
+		},
+		loadModel: function(file, _animationNames, isloadAnimations) {
 			var targetModelNight = new AR.Model(file, {
 				onLoaded: this.loadingStep,
 				/*
@@ -209,7 +222,7 @@ define(function(require) {
 				}
 			});
 			var _animations = [];
-			if (typeof animationNames != "undefined") {
+			if (typeof animationNames != "undefined" && isloadAnimations) {
 				var i;
 				for (i in animationNames) {
 					alert(animationNames[i]);
@@ -218,7 +231,8 @@ define(function(require) {
 			}
 			return {
 				model: targetModelNight,
-				animations: _animations
+				animations: _animations,
+				animationNames: _animationNames
 			};
 		},
 		createOverlays: function() {
@@ -230,18 +244,12 @@ define(function(require) {
 		},
 		loadingStep: function() {
 			if (World.targets.length > 0 && World.targets[0].model.isLoaded() && World.targets[0].tracker.isLoaded()) {
-				// if (!World._tracker) {
-				// 	World._tracker.destroy();
-				// 	alert("tracker.destroy");
-				// }
 				World.loaded = true;
-
 				// if (World.trackableVisible) {
 				// 	var appearingAnimation = World.createAppearingAnimation(World.targets[0].model, 0.045);
 				// 	appearingAnimation.start();
 				// }
 				World.controller.modelDidLoad();
-				// World.clearModel(World.oldTarget);
 			}
 		},
 		createAppearingAnimation: function(model, scale) {
