@@ -52,7 +52,7 @@ define(function(require) {
 			});
 			var _trackable = new AR.Trackable2DObject(_tracker, "*", {
 				drawables: {
-					cam: [World.targets[0].model]
+					cam: []
 				},
 				onEnterFieldOfVision: function(targetName) {
 					try {
@@ -61,8 +61,10 @@ define(function(require) {
 							var target = World.targets[i];
 							if (target.targetName === targetName) {
 								// target.trackable.drawables.addCamDrawable(target.model, 0);
-								// setTime();
-								World.startModelAnimationWithTarget(target);
+								setTimeout(function() {
+									World.startModelAnimationWithTarget(target);
+								}, 500);
+
 							}
 						}
 					} catch (err) {
