@@ -60,7 +60,7 @@ define(function(require) {
 						for (i in World.targets) {
 							var target = World.targets[i];
 							if (target.targetName === targetName) {
-							    target.trackable.drawables.addCamDrawable(target.model, 0);
+								target.trackable.drawables.addCamDrawable(target.model, 0);
 								setTimeout(function() {
 									World.startModelAnimationWithTarget(target);
 								}, 500);
@@ -208,17 +208,17 @@ define(function(require) {
 					roll: 0
 				}
 			});
-			var animations = [];
+			var _animations = [];
 			if (typeof animationNames != "undefined") {
 				var i;
 				for (i in animationNames) {
 					alert(animationNames[i]);
-					animations.push(new AR.ModelAnimation(targetModelNight, animationNames[i]));
+					_animations.push(new AR.ModelAnimation(targetModelNight, animationNames[i]));
 				}
 			}
 			return {
 				model: targetModelNight,
-				animations: animations
+				animations: _animations
 			};
 		},
 		createOverlays: function() {
@@ -272,8 +272,12 @@ define(function(require) {
 				var i;
 				for (i in target.animations) {
 					try {
+						if (target.animations[i].isRunning()) {
+							target.animations[i].resume();
+						} else {
+							target.animations[i].start(-1);
+						}
 						console.log(target.animations[i]);
-						target.animations[i].start(200);
 					} catch (err) {
 						console.log(err);
 					}
