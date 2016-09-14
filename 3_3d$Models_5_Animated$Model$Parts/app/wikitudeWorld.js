@@ -15,7 +15,11 @@ define(function(require) {
 			this.createOverlays();
 		},
 		loadDayModeAndTracker: function() {
-
+			if (World.isLoadingModel) {
+				return;
+			}
+			this.isLoadingModel = true;
+			World.controller.modelOnLoading();
 			var _modelAndAnimations = this.loadSkyLineModel();
 			var t = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: this.loadingStep
@@ -35,12 +39,50 @@ define(function(require) {
 				model: _modelAndAnimations.model,
 				animations: _modelAndAnimations.animations
 			});
-
+			World.isLoadingModel = false;
 		},
 		loadModelsAndTrackers: function(targets) {
+			var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
+				onLoaded: World.loadingStep // World.clearModel(modelAndAnimations);
+			});
+			var _trackable = new AR.Trackable2DObject(_tracker, "*", {
+				drawables: {
+					cam: []
+				},
+				onEnterFieldOfVision: function(targetName) {
+					try {
+						World.trackableVisible = true;
+						for (i in World.targets) {
+							var target = World.targets[i];
+							if (target.targetName === targetName) {
+								oldTarget.trackable.drawables.removeCamDrawable(0);
+								World.startModelAnimationWithTarget(target);
+							}
+						}
+					} catch (err) {
+						console.log(err);
+					}
+				},
+				onExitFieldOfVision: function(targetName) {
+					try {
+						World.trackableVisible = false;
+					} catch (err) {
+						console.log(err);
+					}
+				}
+			});
 			var i;
-			for (i in animationNames) {
-				this.animations.push(new AR.ModelAnimation(targetModelNight, animationNames[i]));
+			var target;
+			for (i in targets) {
+				target = targets[i];
+				var modelAndAnimations = World.loadModel(target.modelName, target.animationNames);
+				World.targets.push({
+					tracker: _tracker,
+					trackable: _trackable,
+					model: modelAndAnimations.model,
+					animations: modelAndAnimations.animations,
+					targetName: target.targetName
+				});
 			}
 		},
 		loadModeAndTracker: function(name, animationNames, targetName) {
@@ -157,7 +199,7 @@ define(function(require) {
 				}
 			});
 			if (typeof animationNames != "undefined") {
-				this.animations = [];
+				// this.animations = [];
 				var i;
 				for (i in animationNames) {
 					this.animations.push(new AR.ModelAnimation(targetModelNight, animationNames[i]));
@@ -213,6 +255,17 @@ define(function(require) {
 		appear: function() {
 			World.trackableVisible = true;
 			World.startModelAnimation();
+		},
+		startModelAnimationWithTarget: function(target) {
+			// Resets the properties to the initial values.
+			if (World.loaded && typeof target.model != "undefined") {
+				var i;
+				for (i in target.animations) {
+					try {
+						target.animations[i].start(200);
+					} catch (err) {}
+				}
+			}
 		},
 		startModelAnimation: function() {
 			// Resets the properties to the initial values.
