@@ -93,7 +93,7 @@ define(function(require) {
 					animationNames: target.animationNames,
 					targetName: target.targetName
 				});
-				alert(target.targetName);
+				alert(target.animationNames[0]);
 			}
 			World.modelName = "*";
 			World.isLoadingModel = false;
