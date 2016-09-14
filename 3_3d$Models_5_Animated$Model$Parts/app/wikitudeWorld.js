@@ -60,7 +60,6 @@ define(function(require) {
 						for (i in World.targets) {
 							var target = World.targets[i];
 							if (target.targetName === targetName) {
-								target.trackable.drawables.removeCamDrawable(0);
 								target.trackable.drawables.addCamDrawable(target.model, 0);
 								World.startModelAnimationWithTarget(target);
 							}
@@ -91,7 +90,7 @@ define(function(require) {
 					targetName: target.targetName
 				});
 			}
-			World.modelName = name;
+			World.modelName = "*";
 			World.isLoadingModel = false;
 		},
 		loadModeAndTracker: function(name, animationNames, targetName) {
