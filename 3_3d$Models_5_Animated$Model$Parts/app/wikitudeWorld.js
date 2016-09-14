@@ -267,13 +267,14 @@ define(function(require) {
 		startModelAnimationWithTarget: function(target) {
 			// Resets the properties to the initial values.
 			if (World.loaded && typeof target.model != "undefined") {
-				var i;
-				for (i in target.animations) {
-					try {
-						target.animations[i].start(200);
-					} catch (err) {
-						console.log(err);
-					}
+
+			}
+			var i;
+			for (i in target.animations) {
+				try {
+					target.animations[i].start(200);
+				} catch (err) {
+					console.log(err);
 				}
 			}
 		},
