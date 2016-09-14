@@ -272,6 +272,7 @@ define(function(require) {
 			var i;
 			for (i in target.animations) {
 				try {
+					console.log(target.animations[i]);
 					target.animations[i].start(200);
 				} catch (err) {
 					console.log(err);
