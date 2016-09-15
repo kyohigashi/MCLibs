@@ -96,7 +96,7 @@ define(function(require) {
                 if (World.modelName != "") {
                     e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
                         "<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img><img src='assets/small-icc2.jpg'></img></div>";
-                    $('#selectBuidling').empty().append("<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>");
+                    // $('#selectBuidling').empty().append("<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>");
                 } else {
                     e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
                         "<div" + cssDivRight + "><img src='assets/skyline.jpg'></img></div>";
