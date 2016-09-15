@@ -35,11 +35,22 @@ define(function(require) {
                                 return console.log('Cancelled')
                             } else {
                                 try {
-                                    if (selector == "assets/ICC_happybirthday_0902_V3_NIGHT.wt3") {
-                                        World.loadModeAndTracker("assets/ICC_happybirthday_0902_V3_NIGHT.wt3", ["Night_set_animation", "cloud_grp_animaton", "happy_birthday5_animation"]);
-                                    } else {
-                                        World.loadModeAndTracker("assets/ICC_ilovehk_0901.wt3", ["I_love_HK4_animation"]);
-                                    }
+                                    // if (selector == "assets/ICC_happybirthday_0902_V3_NIGHT.wt3") {
+                                    //     World.loadModeAndTracker("assets/ICC_happybirthday_0902_V3_NIGHT.wt3", ["Night_set_animation", "cloud_grp_animaton", "happy_birthday5_animation"]);
+                                    // } else {
+                                    //     World.loadModeAndTracker("assets/ICC_ilovehk_0901.wt3", ["I_love_HK4_animation"]);
+                                    // }
+                                    var targets = [{
+                                        modelName: "assets/ICC_happybirthday_0912_NIGHT.wt3",
+                                        animationNames: ["Night_set_animation", "happy_birthday5_animation"],
+                                        targetName: "Small-ICC-firework-version-chop"
+                                    }, {
+                                        modelName: "assets/ICC_happybirthday_0912_DAY.wt3",
+                                        animationNames: ["Day_set_animation", "happy_birthday5_animation"],
+                                        targetName: "Small-ICC-chop"
+                                    }];
+                                    World.loadModelsAndTrackers(targets);
+                                    World.controller.isFinishLoading = true;
                                 } catch (err) {
                                     console.log(err);
                                 }
@@ -70,10 +81,6 @@ define(function(require) {
                         targetName: "Small-ICC-chop"
                     }];
                     World.loadModelsAndTrackers(targets);
-                    // World.loadModeAndTracker("assets/ICC_happybirthday_0912_NIGHT.wt3", ["Night_set_animation", "happy_birthday5_animation"], "Small-ICC-firework-version-chop");
-                    // World.loadModeAndTracker("assets/ICC_happybirthday_0912_DAY.wt3", ["Day_set_animation", "happy_birthday5_animation"], "Small-ICC-firework-version-chop");
-                    // setTimeout(function() {
-                    // }, 3000);
                     World.controller.isFinishLoading = true;
                 });
 
@@ -88,8 +95,8 @@ define(function(require) {
 
                 if (World.modelName != "") {
                     e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
-                        "<div" + cssDivRight + "><img src='assets/small-icc2.jpg'></img></div>";
-                    // $('#selectBuidling').empty().append("<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>");
+                        "<div" + cssDivRight + "><img src='assets/small-icc.jpg'></img><img src='assets/small-icc2.jpg'></img></div>";
+                    $('#selectBuidling').empty().append("<button id='loadBuildingWithText' class='hs-brand-button'>SelectBuilding</button>");
                 } else {
                     e = "<div" + cssDivLeft + ">Scan Sky100 Tracker Image:</div>" +
                         "<div" + cssDivRight + "><img src='assets/skyline.jpg'></img></div>";

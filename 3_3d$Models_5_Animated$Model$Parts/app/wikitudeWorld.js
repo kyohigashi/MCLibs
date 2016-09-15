@@ -25,7 +25,7 @@ define(function(require) {
 				onLoaded: this.loadingStep
 			});
 
-			var _trackable = new AR.Trackable2DObject(t, "skyline-tracker_edit", {
+			var _trackable = new AR.Trackable2DObject(t, "*", {
 				drawables: {
 					cam: World.targetModels
 				},
@@ -46,6 +46,7 @@ define(function(require) {
 				return;
 			}
 			this.isLoadingModel = true;
+			World.destroyAllTarget();
 			World.controller.modelOnLoading();
 			var _tracker = new AR.ClientTracker("assets/tracker.wtc", {
 				onLoaded: World.loadingStep // World.clearModel(modelAndAnimations);
@@ -58,13 +59,13 @@ define(function(require) {
 					try {
 						World.trackableVisible = true;
 						for (i in World.targets) {
-							var target = World.targets[i];
-							if (target.targetName === targetName) {
+							if (World.targets[i].targetName === targetName) {
+								var target = World.targets[i];
 								target.trackable.drawables.addCamDrawable(target.model, 0);
 								setTimeout(function() {
 									World.loadAnimationWithTarget(target);
 									World.startModelAnimationWithTarget(target);
-								}, 500);
+								}, 200);
 							}
 						}
 					} catch (err) {
@@ -93,7 +94,6 @@ define(function(require) {
 					animationNames: target.animationNames,
 					targetName: target.targetName
 				});
-				alert(target.animationNames[0]);
 			}
 			World.modelName = "*";
 			World.isLoadingModel = false;
@@ -162,7 +162,7 @@ define(function(require) {
 			}, 2000);
 		},
 		loadSkyLineModel: function() {
-			var targetModelDay = new AR.Model("assets/skydivelowresscaledown.wt3", {
+			var targetModelDay = new AR.Model("assets/skydive_0914.wt3", {
 				onLoaded: this.loadingStep,
 				/*
 					The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
@@ -235,10 +235,6 @@ define(function(require) {
 		loadingStep: function() {
 			if (World.targets.length > 0 && World.targets[0].model.isLoaded() && World.targets[0].tracker.isLoaded()) {
 				World.loaded = true;
-				// if (World.trackableVisible) {
-				// 	var appearingAnimation = World.createAppearingAnimation(World.targets[0].model, 0.045);
-				// 	appearingAnimation.start();
-				// }
 				World.controller.modelDidLoad();
 			}
 		},
@@ -264,6 +260,19 @@ define(function(require) {
 			World.trackableVisible = true;
 			World.startModelAnimation();
 		},
+		startModelAnimation: function() {
+			// Resets the properties to the initial values.
+			if (World.loaded && typeof World.targetModels != "undefined") {
+				var i;
+				for (i in World.animations) {
+					try {
+						World.animations[i].start(200);
+					} catch (err) {
+						console.log(err);
+					}
+				}
+			}
+		},
 		startModelAnimationWithTarget: function(target) {
 			// Resets the properties to the initial values.
 			if (World.loaded && typeof target.model != "undefined") {
@@ -282,26 +291,37 @@ define(function(require) {
 				}
 			}
 		},
-		startModelAnimation: function() {
-			// Resets the properties to the initial values.
-			if (World.loaded && typeof World.targetModels != "undefined") {
-				var i;
-				for (i in World.animations) {
-					try {
-						World.animations[i].start(200);
-					} catch (err) {
-						console.log(err);
-					}
-				}
-			}
-		},
 		loadAnimationWithTarget: function(target) {
 			try {
+				var j;
+				for (j in target.animations) {
+					target.animations[j].stop();
+					target.animations[j].destroy();
+				}
+				target.animations = [];
 				var i;
 				for (i in target.animationNames) {
-					alert(target.animationNames[i]);
 					target.animations.push(new AR.ModelAnimation(target.model, target.animationNames[i]));
 				}
+			} catch (err) {
+				console.log(err);
+			}
+		},
+		destroyAllTarget: function() {
+			try {
+				var i;
+				for (i in World.targets) {
+					var target = World.targets[i];
+					target.trackable.drawables.removeCamDrawable(0);
+					target.tracker.enabled = false;
+					var j;
+					for (j in target.animations) {
+						target.animations[j].stop();
+						target.animations[j].destroy();
+					}
+					target.model.destroy();
+				}
+				World.targets = [];
 			} catch (err) {
 				console.log(err);
 			}
