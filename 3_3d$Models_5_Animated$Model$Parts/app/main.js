@@ -41,11 +41,11 @@ define(function(require) {
                                     //     World.loadModeAndTracker("assets/ICC_ilovehk_0901.wt3", ["I_love_HK4_animation"]);
                                     // }
                                     var targets = [{
-                                        modelName: "assets/ICC_happybirthday_0912_NIGHT.wt3",
+                                        modelName: "assets/ICC_happybirthday_1013_NIGHT.wt3",
                                         animationNames: ["Night_set_animation", "happy_birthday5_animation"],
                                         targetName: "Small-ICC-firework-version-chop"
                                     }, {
-                                        modelName: "assets/ICC_happybirthday_0912_DAY.wt3",
+                                        modelName: "assets/ICC_happybirthday_1013_DAY.wt3",
                                         animationNames: ["Day_set_animation", "happy_birthday5_animation"],
                                         targetName: "Small-ICC-chop"
                                     }];
