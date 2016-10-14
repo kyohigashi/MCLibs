@@ -72,11 +72,11 @@ define(function(require) {
                 });
                 $("#loadmodelButtonSmallBuild").click(function() {
                     var targets = [{
-                        modelName: "assets/ICC_happybirthday_0929_NIGHT.wt3",
+                        modelName: "assets/ICC_happybirthday_1013_NIGHT.wt3",
                         animationNames: ["Night_set_animation", "happy_birthday5_animation"],
                         targetName: "Small-ICC-firework-version-chop"
                     }, {
-                        modelName: "assets/ICC_happybirthday_0929_DAY.wt3",
+                        modelName: "assets/ICC_happybirthday_1013_DAY.wt3",
                         animationNames: ["Day_set_animation", "happy_birthday5_animation"],
                         targetName: "Small-ICC-chop"
                     }];
