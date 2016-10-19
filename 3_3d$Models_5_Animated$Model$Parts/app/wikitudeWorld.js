@@ -162,16 +162,16 @@ define(function(require) {
 			}, 2000);
 		},
 		loadSkyLineModel: function() {
-			var targetModelDay = new AR.Model("assets/skydive_0914.wt3", {
+			var targetModelDay = new AR.Model("assets/skydive_1019.wt3", {
 				onLoaded: this.loadingStep,
 				/*
 					The drawables are made clickable by setting their onClick triggers. Click triggers can be set in the options of the drawable when the drawable is created. Thus, when the 3D model onClick: this.toggleAnimateModel is set in the options it is then passed to the AR.Model constructor. Similar the button's onClick: this.toggleAnimateModel trigger is set in the options passed to the AR.ImageDrawable constructor. toggleAnimateModel() is therefore called when the 3D model or the button is clicked.
 					Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
 				*/
 				scale: {
-					x: 0.005,
-					y: 0.005,
-					z: 0.005
+					x: 1.0,
+					y: 1.0,
+					z: 1.0
 				},
 				translate: {
 					x: 0.0,
@@ -179,7 +179,7 @@ define(function(require) {
 					z: 0.0
 				},
 				rotate: {
-					tilt: 180
+					tilt: 0
 				}
 			});
 			this.animations = [];
@@ -198,9 +198,9 @@ define(function(require) {
 					Inside the toggleAnimateModel() function, it is checked if the animation is running and decided if it should be started, resumed or paused.
 				*/
 				scale: {
-					x: 0.014,
-					y: 0.014,
-					z: 0.014
+					x: 1.0,
+					y: 1.0,
+					z: 1.0
 				},
 				translate: {
 					x: 0.0,
