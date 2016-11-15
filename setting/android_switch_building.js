@@ -1,0 +1,3 @@
+function switchModel(index) {
+	
+}
