@@ -32,6 +32,7 @@ define(function(require) {
 				if (modelAndAnimations === null)
 					break;
 
+
 				var _trackable = new AR.Trackable2DObject(_tracker, target.targetName, {
 					drawables: {
 						cam: [modelAndAnimations.model]
@@ -112,7 +113,6 @@ define(function(require) {
 					if (target.animations[i].isRunning()) {
 						target.animations[i].resume();
 					} else {
-						console.log(target.animations[i]);
 						target.animations[i].start(-1);
 					}
 				} catch (err) {
